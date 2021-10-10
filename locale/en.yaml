@@ -1,0 +1,8 @@
+en:
+  avm:
+    eac_ruby_base1:
+      source_stereotypes:
+        update:
+          no_scm_update_commit_message: "Gem \"%{name}\" (Local): update to '%{version}'."
+          scm_update_commit_message: '**/.gitrepo: fix/update.'
+          update_gemfile_lock_commit_message: 'All gems: update.'
