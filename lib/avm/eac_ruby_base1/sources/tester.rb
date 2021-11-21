@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require 'avm/source_stereotypes/tester'
+require 'avm/eac_generic_base0/sources/tester'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacRubyBase1
     module Sources
-      class Tester < ::Avm::SourceStereotypes::Tester
+      class Tester < ::Avm::EacGenericBase0::Sources::Tester
         BUNDLE_TEST_COMMAND_CONFIGURATION_KEY = :bundle_test_command
 
-        delegate :the_gem, to: :source_stereotype
+        delegate :the_gem, to: :source
 
         # @return [EacRubyUtils::Envs::Command, nil]
         def test_command
