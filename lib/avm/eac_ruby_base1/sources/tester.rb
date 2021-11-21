@@ -28,7 +28,8 @@ module Avm
         end
 
         def run_test_command
-          execute_command_and_log(the_gem.bundle('install').chdir_root)
+          execute_command_and_log(the_gem.bundle('install').chdir_root) ||
+            execute_command_and_log(the_gem.bundle('update').chdir_root)
           super
         end
       end
