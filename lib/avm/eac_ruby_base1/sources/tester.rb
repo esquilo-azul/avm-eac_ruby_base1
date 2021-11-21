@@ -5,7 +5,7 @@ require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacRubyBase1
-    module SourceStereotypes
+    module Sources
       class Tester < ::Avm::SourceStereotypes::Tester
         BUNDLE_TEST_COMMAND_CONFIGURATION_KEY = :bundle_test_command
 

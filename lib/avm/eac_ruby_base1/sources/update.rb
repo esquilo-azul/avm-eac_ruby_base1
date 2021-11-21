@@ -5,7 +5,7 @@ require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacRubyBase1
-    module SourceStereotypes
+    module Sources
       class Update
         require_sub __FILE__
         enable_simple_cache
@@ -40,7 +40,7 @@ module Avm
 
         def update_subs
           source.subs.each do |sub|
-            ::Avm::EacRubyBase1::SourceStereotypes::Update::SubUpdate.new(self, sub)
+            ::Avm::EacRubyBase1::Sources::Update::SubUpdate.new(self, sub)
           end
         end
 

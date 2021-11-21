@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require 'avm/source_stereotypes/base'
-require 'avm/eac_ruby_base1/source_stereotypes/update'
-require 'avm/eac_ruby_base1/source_stereotypes/tester'
+require 'avm/eac_ruby_base1/sources/update'
+require 'avm/eac_ruby_base1/sources/tester'
 require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacRubyBase1
-    module SourceStereotypes
+    module Sources
       class Base < ::Avm::SourceStereotypes::Base
         delegate :gemspec_path, to: :the_gem
 
@@ -20,9 +20,9 @@ module Avm
           gemfile_path.exist? || gemspec_path.present?
         end
 
-        # @return [Avm::EacRubyBase1::SourceStereotypes::Tester]
+        # @return [Avm::EacRubyBase1::Sources::Tester]
         def tester_class
-          Avm::EacRubyBase1::SourceStereotypes::Tester
+          Avm::EacRubyBase1::Sources::Tester
         end
 
         # @return [EacRubyGemsUtils::Gem]
@@ -31,7 +31,7 @@ module Avm
         end
 
         def update_source(source)
-          ::Avm::EacRubyBase1::SourceStereotypes::Update.new(source)
+          ::Avm::EacRubyBase1::Sources::Update.new(source)
         end
       end
     end

@@ -2,7 +2,7 @@
 
 module Avm
   module EacRubyBase1
-    module SourceStereotypes
+    module Sources
       class Update
         class SubUpdate
           enable_simple_cache
