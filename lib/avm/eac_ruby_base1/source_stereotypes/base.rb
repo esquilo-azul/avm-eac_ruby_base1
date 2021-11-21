@@ -16,7 +16,7 @@ module Avm
         end
 
         def valid?
-          gemfile_path.exist? || gemspec_file.exist?
+          gemfile_path.exist? || gemspec_path.present?
         end
 
         # @return [EacRubyGemsUtils::Gem]
