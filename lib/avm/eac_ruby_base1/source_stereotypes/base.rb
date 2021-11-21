@@ -9,6 +9,8 @@ module Avm
   module EacRubyBase1
     module SourceStereotypes
       class Base < ::Avm::SourceStereotypes::Base
+        delegate :gemspec_path, to: :the_gem
+
         def gemfile_path
           source.path.join('Gemfile')
         end
