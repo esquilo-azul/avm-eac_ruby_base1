@@ -18,7 +18,7 @@ module Avm
             if commit.no_scm_changed_files.any?
               commit = commit.reword(no_scm_update_commit_message)
               source.scm.commit_if_change { source_update.bundle_update }
-                    .if_present { |v| v.merge_with(commit) }
+                .if_present { |v| v.merge_with(commit) }
             else
               commit.reword(scm_update_commit_message)
             end

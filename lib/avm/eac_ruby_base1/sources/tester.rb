@@ -19,7 +19,7 @@ module Avm
         # @return [EacRubyGemsUtils::Gem::Command, nil]
         def bundle_test_command
           source.read_configuration_as_shell_words(BUNDLE_TEST_COMMAND_CONFIGURATION_KEY)
-                .if_present { |args| the_gem.bundle(*args).chdir_root }
+            .if_present { |args| the_gem.bundle(*args).chdir_root }
         end
 
         # @return [EacRubyGemsUtils::Gem::Command, nil]
