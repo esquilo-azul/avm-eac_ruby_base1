@@ -6,7 +6,7 @@ require 'eac_ruby_utils/ruby/on_clean_environment'
 module Avm
   module EacRubyBase1
     class Rubocop
-      require_sub __FILE__
+      require_sub __FILE__, include_modules: true
       enable_speaker
       enable_simple_cache
       common_constructor :base_path, :rubocop_args
