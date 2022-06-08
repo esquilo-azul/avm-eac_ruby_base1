@@ -3,6 +3,7 @@
 require 'avm/eac_generic_base0/sources/base'
 require 'avm/eac_ruby_base1/sources/update'
 require 'avm/eac_ruby_base1/sources/tester'
+require 'avm/version_number'
 require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
 
@@ -32,6 +33,11 @@ module Avm
 
         def update
           ::Avm::EacRubyBase1::Sources::Update.new(self)
+        end
+
+        # @return [Avm::VersionNumber]
+        def version
+          the_gem.version.if_present { |v| ::Avm::VersionNumber.new(v) }
         end
       end
     end
