@@ -39,6 +39,10 @@ module Avm
         def version
           the_gem.version.if_present { |v| ::Avm::VersionNumber.new(v) }
         end
+
+        def version=(value)
+          the_gem.version_file.value = value
+        end
       end
     end
   end
