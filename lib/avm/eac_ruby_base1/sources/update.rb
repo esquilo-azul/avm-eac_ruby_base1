@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/patches/i18n'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
