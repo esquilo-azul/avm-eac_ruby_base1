@@ -8,7 +8,13 @@ module Avm
     module Sources
       class Base < ::Avm::EacGenericBase0::Sources::Base
         module Bundler
+          CONFIGURED_GEMFILE_PATH_ENTRY_KEY = 'ruby.gemfile_path'
           DEFAULT_GEMFILE_PATH = 'Gemfile'
+
+          # @return [String]
+          def configured_gemfile_path
+            configuration.entry(CONFIGURED_GEMFILE_PATH_ENTRY_KEY).value
+          end
 
           # @return [String]
           def default_gemfile_path
@@ -17,7 +23,7 @@ module Avm
 
           # @return [Pathname]
           def gemfile_path
-            path.join(default_gemfile_path)
+            path.join(configured_gemfile_path || default_gemfile_path)
           end
         end
       end
