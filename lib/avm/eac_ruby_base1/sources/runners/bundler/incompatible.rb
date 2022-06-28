@@ -26,7 +26,7 @@ module Avm
 
             def bundle_update
               infom 'Running "bundle update"...'
-              instance.ruby_gem.bundle('update').execute[:stdout]
+              runner_context.call(:subject).bundle('update').execute[:stdout]
             end
 
             def content_path
@@ -35,15 +35,11 @@ module Avm
             end
 
             def fs_cache_object_id
-              instance.path.to_s.variableize
+              runner_context.call(:subject).path.to_s.variableize
             end
 
             def gem_title(gem_in_conflict)
               gem_in_conflict.gem_name
-            end
-
-            def instance
-              runner_context.call(:instance)
             end
 
             def parser_uncached
