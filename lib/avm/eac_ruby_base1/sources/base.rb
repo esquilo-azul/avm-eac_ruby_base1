@@ -3,6 +3,7 @@
 require 'avm/eac_generic_base0/sources/base'
 require 'avm/eac_ruby_base1/sources/update'
 require 'avm/eac_ruby_base1/sources/tester'
+require 'avm/eac_ruby_base1/sources/runners/bundler'
 require 'avm/version_number'
 require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
@@ -13,6 +14,14 @@ module Avm
       class Base < ::Avm::EacGenericBase0::Sources::Base
         require_sub __FILE__, include_modules: :prepend, require_dependency: true
         delegate :gemspec_path, to: :the_gem
+
+        EXTRA_AVAILABLE_SUBCOMMANDS = {
+          'bundler' => ::Avm::EacRubyBase1::Sources::Runners::Bundler
+        }.freeze
+
+        def extra_available_subcommands
+          EXTRA_AVAILABLE_SUBCOMMANDS
+        end
 
         def valid?
           gemfile_path.exist? || gemspec_path.present?
