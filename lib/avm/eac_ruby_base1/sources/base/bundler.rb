@@ -8,9 +8,16 @@ module Avm
     module Sources
       class Base < ::Avm::EacGenericBase0::Sources::Base
         module Bundler
+          DEFAULT_GEMFILE_PATH = 'Gemfile'
+
+          # @return [String]
+          def default_gemfile_path
+            DEFAULT_GEMFILE_PATH
+          end
+
           # @return [Pathname]
           def gemfile_path
-            path.join('Gemfile')
+            path.join(default_gemfile_path)
           end
         end
       end
