@@ -34,7 +34,7 @@ module Avm
               fs_cache.content_path
             end
 
-            def fs_cache_object_id
+            def fs_object_id
               runner_context.call(:subject).path.to_s.variableize
             end
 
