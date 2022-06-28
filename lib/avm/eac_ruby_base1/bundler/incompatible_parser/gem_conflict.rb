@@ -15,12 +15,11 @@ module Avm
           common_constructor :gem_name
 
           def add_depends_on(depends_on)
-            @depends_on_stack ||= []
-            @depends_on_stack << depends_on
+            depends_on_stack << depends_on
           end
 
           def add_version_requirement(version_requirement)
-            version_requirement.stack = @depends_on_stack
+            version_requirement.stack = depends_on_stack
             versions_requirements << version_requirement
             @depends_on_stack = nil
           end
@@ -31,6 +30,12 @@ module Avm
 
           def versions_requirements
             @versions_requirements ||= []
+          end
+
+          private
+
+          def depends_on_stack
+            @depends_on_stack ||= []
           end
         end
       end
