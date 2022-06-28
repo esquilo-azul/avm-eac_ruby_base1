@@ -14,10 +14,6 @@ module Avm
         require_sub __FILE__, include_modules: :prepend, require_dependency: true
         delegate :gemspec_path, to: :the_gem
 
-        def gemfile_path
-          path.join('Gemfile')
-        end
-
         def valid?
           gemfile_path.exist? || gemspec_path.present?
         end
