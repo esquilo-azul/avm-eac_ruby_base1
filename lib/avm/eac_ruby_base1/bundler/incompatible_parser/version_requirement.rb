@@ -8,7 +8,7 @@ module Avm
     module Bundler
       class IncompatibleParser
         class VersionRequirement < ::Avm::EacRubyBase1::Bundler::IncompatibleParser::LineParserBase
-          LINE_PARSER = /\A([a-z][a-z_0-9]*)(?: \((.+)\))?\z/
+          LINE_PARSER = /\A([a-z][a-z\-_0-9]*)(?: \((.+)\))?\z/
                           .to_parser { |m| new(m[1], m[2]) }
 
           enable_simple_cache
