@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'avm/eac_generic_base0/sources/base'
+require 'avm/eac_ruby_base1/rubygems/version_file'
 require 'avm/eac_ruby_base1/sources/update'
 require 'avm/eac_ruby_base1/sources/tester'
 require 'avm/eac_ruby_base1/sources/runners/bundler'
 require 'avm/version_number'
-require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -13,7 +13,6 @@ module Avm
     module Sources
       class Base < ::Avm::EacGenericBase0::Sources::Base
         require_sub __FILE__, include_modules: :prepend, require_dependency: true
-        delegate :gemspec_path, to: :the_gem
 
         EXTRA_AVAILABLE_SUBCOMMANDS = {
           'bundler' => ::Avm::EacRubyBase1::Sources::Runners::Bundler
@@ -21,6 +20,11 @@ module Avm
 
         def extra_available_subcommands
           EXTRA_AVAILABLE_SUBCOMMANDS
+        end
+
+        # @return [Pathname]
+        def gemspec_path
+          path.glob("*#{GEMSPEC_EXTNAME}").first
         end
 
         def valid?
@@ -32,22 +36,26 @@ module Avm
           Avm::EacRubyBase1::Sources::Tester
         end
 
-        # @return [EacRubyGemsUtils::Gem]
-        def the_gem
-          @the_gem ||= ::EacRubyGemsUtils::Gem.new(path)
-        end
-
         def update
           ::Avm::EacRubyBase1::Sources::Update.new(self)
         end
 
         # @return [Avm::VersionNumber]
         def version
-          the_gem.version.if_present { |v| ::Avm::VersionNumber.new(v) }
+          version_file.value.if_present { |v| ::Avm::VersionNumber.new(v) }
         end
 
         def version=(value)
-          the_gem.version_file.value = value
+          version_file.value = value
+        end
+
+        # @return [Avm::EacRubyBase1::Rubygems::VersionFile]
+        def version_file
+          ::Avm::EacRubyBase1::Rubygems::VersionFile.new(version_file_path)
+        end
+
+        def version_file_path
+          path.join('lib', *gem_namespace_parts, 'version.rb')
         end
       end
     end

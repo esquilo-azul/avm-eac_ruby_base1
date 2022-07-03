@@ -9,27 +9,25 @@ module Avm
       class Tester < ::Avm::EacGenericBase0::Sources::Tester
         BUNDLE_TEST_COMMAND_CONFIGURATION_KEY = :bundle_test_command
 
-        delegate :the_gem, to: :source
-
-        # @return [EacRubyUtils::Envs::Command, nil]
+        # @return [Avm::EacRailsBase1::Sources::Base::BundleCommand, nil]
         def test_command
           bundle_test_command || super || default_test_command
         end
 
-        # @return [EacRubyGemsUtils::Gem::Command, nil]
+        # @return [Avm::EacRailsBase1::Sources::Base::BundleCommand, nil]
         def bundle_test_command
           source.read_configuration_as_shell_words(BUNDLE_TEST_COMMAND_CONFIGURATION_KEY)
-            .if_present { |args| the_gem.bundle(*args).chdir_root }
+            .if_present { |args| source.bundle(*args).chdir_root }
         end
 
-        # @return [EacRubyGemsUtils::Gem::Command, nil]
+        # @return [Avm::EacRailsBase1::Sources::Base::BundleCommand, nil]
         def default_test_command
-          the_gem.bundle('exec', 'rspec', '--fail-fast').chdir_root
+          source.bundle('exec', 'rspec', '--fail-fast').chdir_root
         end
 
         def run_test_command
-          execute_command_and_log(the_gem.bundle('install').chdir_root) ||
-            execute_command_and_log(the_gem.bundle('update').chdir_root)
+          execute_command_and_log(source.bundle('install').chdir_root) ||
+            execute_command_and_log(source.bundle('update').chdir_root)
           super
         end
       end

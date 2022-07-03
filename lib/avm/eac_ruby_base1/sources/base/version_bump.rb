@@ -9,12 +9,12 @@ module Avm
       class Base < ::Avm::EacGenericBase0::Sources::Base
         module VersionBump
           def after_sub_version_bump_do_changes
-            the_gem.bundle('install').chdir_root.execute!
+            bundle('install').chdir_root.execute!
           end
 
           def version_bump_do_changes(target_version)
             self.version = target_version
-            the_gem.bundle('install').chdir_root.execute!
+            bundle('install').chdir_root.execute!
           end
         end
       end
