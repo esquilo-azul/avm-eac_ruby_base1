@@ -22,11 +22,6 @@ module Avm
           EXTRA_AVAILABLE_SUBCOMMANDS
         end
 
-        # @return [Pathname]
-        def gemspec_path
-          path.glob("*#{GEMSPEC_EXTNAME}").first
-        end
-
         def valid?
           gemfile_path.exist? || gemspec_path.present?
         end
