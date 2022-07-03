@@ -28,6 +28,20 @@ module Avm
             DEFAULT_GEMFILE_PATH
           end
 
+          # @return [Bundler::LockfileParser]
+          def gemfile_lock_content
+            ::Bundler::LockfileParser.new(::Bundler.read_file(gemfile_lock_path))
+          end
+
+          def gemfile_lock_gem_version(gem_name)
+            gemfile_lock_content.specs.find { |gem| gem.name == gem_name }.if_present(&:version)
+          end
+
+          # @return [Pathname]
+          def gemfile_lock_path
+            gemfile_path.basename_sub { |b| "#{b}.lock" }
+          end
+
           # @return [Pathname]
           def gemfile_path
             path.join(configured_gemfile_path || default_gemfile_path)
