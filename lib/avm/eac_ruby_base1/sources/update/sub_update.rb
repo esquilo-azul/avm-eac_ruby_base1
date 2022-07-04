@@ -37,7 +37,7 @@ module Avm
 
           def no_scm_update_commit_message
             source_update.i18n_translate(__method__, __locale: source.locale,
-                                                     name: ruby_gem.name,
+                                                     name: ruby_gem.gem_name,
                                                      version: ruby_gem.version)
           end
 
