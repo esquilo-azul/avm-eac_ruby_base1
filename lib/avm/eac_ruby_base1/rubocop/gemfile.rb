@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'avm/patches/eac_ruby_gems_utils/gem'
+require 'avm/eac_ruby_base1/sources/base'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -10,11 +10,11 @@ module Avm
         def gemfile_rubocop_command
           return nil unless rubocop_gemfile?
 
-          rubocop_command_by_gemfile_path(mygem.root)
+          rubocop_command_by_gemfile_path(mygem.path)
         end
 
         def rubocop_command_by_gemfile_path(path)
-          ::EacRubyGemsUtils::Gem.new(path).bundle('exec', 'rubocop').chdir_root
+          ::Avm::EacRubyBase1::Sources::Base.new(path).bundle('exec', 'rubocop').chdir_root
         end
 
         def rubocop_gemfile?
@@ -31,7 +31,7 @@ module Avm
         end
 
         def find_gem(path)
-          r = ::EacRubyGemsUtils::Gem.new(path)
+          r = ::Avm::EacRubyBase1::Sources::Base.new(path)
           return r if r.gemfile_path.exist?
           return find_gem(path.dirname) unless path.root?
         end

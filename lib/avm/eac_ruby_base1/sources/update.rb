@@ -15,9 +15,9 @@ module Avm
 
         def bundle_update
           infom 'Running "bundle update"...'
-          ruby_gem.bundle('update').execute!
+          bundle('update').execute!
           infom 'Running "bundle install"...'
-          ruby_gem.bundle('install').execute!
+          bundle('install').execute!
         end
 
         protected
@@ -41,10 +41,6 @@ module Avm
           source.subs.each do |sub|
             ::Avm::EacRubyBase1::Sources::Update::SubUpdate.new(self, sub)
           end
-        end
-
-        def ruby_gem_uncached
-          ::EacRubyGemsUtils::Gem.new(source.path)
         end
       end
     end

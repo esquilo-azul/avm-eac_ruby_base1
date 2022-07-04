@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'avm/eac_ruby_base1/sources/base'
+
 module Avm
   module EacRubyBase1
     module Sources
@@ -28,8 +30,9 @@ module Avm
             update_scm.if_present { |commit| on_scm_updated(commit) }
           end
 
+          # @return [Avm::EacRubyBase1::Sources::Base]
           def ruby_gem_uncached
-            ::EacRubyGemsUtils::Gem.new(sub.path)
+            ::Avm::EacRubyBase1::Sources::Base.new(sub.path)
           end
 
           def no_scm_update_commit_message
