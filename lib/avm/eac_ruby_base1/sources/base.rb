@@ -18,6 +18,11 @@ module Avm
           'bundler' => ::Avm::EacRubyBase1::Sources::Runners::Bundler
         }.freeze
 
+        # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
+        def env_set(env)
+          @env = env
+        end
+
         def extra_available_subcommands
           EXTRA_AVAILABLE_SUBCOMMANDS
         end
