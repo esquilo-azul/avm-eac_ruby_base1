@@ -15,6 +15,10 @@ module Avm
         require_sub __FILE__, include_modules: :prepend, require_dependency: true
 
         # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
+        # @return [EacRubyUtils::Envs::BaseEnv]
+        attr_reader :env
+
+        # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
         # @return [Avm::EacRubyBase1::Sources::Base]
         def env_set(env)
           @env = env
