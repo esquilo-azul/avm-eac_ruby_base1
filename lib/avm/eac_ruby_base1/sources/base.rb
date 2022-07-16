@@ -3,7 +3,6 @@
 require 'avm/eac_generic_base0/sources/base'
 require 'avm/eac_ruby_base1/rubygems/version_file'
 require 'avm/eac_ruby_base1/sources/update'
-require 'avm/eac_ruby_base1/sources/tester'
 require 'avm/eac_ruby_base1/sources/runners/bundler'
 require 'avm/version_number'
 require 'eac_ruby_utils/core_ext'
@@ -42,11 +41,6 @@ module Avm
 
         def valid?
           gemfile_path.exist? || gemspec_path.present?
-        end
-
-        # @return [Avm::EacRubyBase1::Sources::Tester]
-        def tester_class
-          Avm::EacRubyBase1::Sources::Tester
         end
 
         def update
