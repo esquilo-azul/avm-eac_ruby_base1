@@ -12,11 +12,20 @@ module Avm
   module EacRubyBase1
     module Sources
       class Base < ::Avm::EacGenericBase0::Sources::Base
+        RSPEC_TEST_COMMAND = 'rspec'
+
         require_sub __FILE__, include_modules: :prepend
 
         # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
         # @return [EacRubyUtils::Envs::BaseEnv]
         attr_reader :env
+
+        # @return [Hash<String, EacRubyUtils::Envs::Command>]
+        def default_test_commands
+          {
+            RSPEC_TEST_COMMAND => rspec_test_command
+          }
+        end
 
         # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
         # @return [Avm::EacRubyBase1::Sources::Base]
@@ -24,6 +33,11 @@ module Avm
           @env = env
 
           self
+        end
+
+        # @return [EacRubyUtils::Envs::Command]
+        def rspec_test_command
+          bundle('exec', 'rspec', '--fail-fast').chdir_root
         end
 
         def valid?
