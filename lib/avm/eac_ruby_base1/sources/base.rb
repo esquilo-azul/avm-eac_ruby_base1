@@ -12,7 +12,7 @@ module Avm
   module EacRubyBase1
     module Sources
       class Base < ::Avm::EacGenericBase0::Sources::Base
-        require_sub __FILE__, include_modules: :prepend, require_dependency: true
+        require_sub __FILE__, include_modules: :prepend
 
         # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
         # @return [EacRubyUtils::Envs::BaseEnv]
