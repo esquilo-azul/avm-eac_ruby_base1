@@ -36,6 +36,18 @@ module Avm
           self
         end
 
+        # @return [Avm::EacRubyBase1::Source::Base]
+        def ruby_parent
+          a_parent = parent
+
+          loop do
+            raise 'No Ruby parent found' if a_parent.blank?
+            return a_parent if a_parent.is_a?(::Avm::EacRubyBase1::Sources::Base)
+
+            a_parent = a_parent.parent
+          end
+        end
+
         # @return [EacRubyUtils::Envs::Command]
         def rspec_test_command
           bundle('exec', 'rspec', '--fail-fast').chdir_root
