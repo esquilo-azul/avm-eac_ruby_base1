@@ -15,15 +15,17 @@ module Avm
 
         require_sub __FILE__, include_modules: :prepend
 
-        # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
-        # @return [EacRubyUtils::Envs::BaseEnv]
-        attr_reader :env
-
         # @return [Hash<String, EacRubyUtils::Envs::Command>]
         def default_test_commands
           {
             RSPEC_TEST_COMMAND => rspec_test_command
           }
+        end
+
+        # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
+        # @return [EacRubyUtils::Envs::BaseEnv]
+        def env
+          @env.presence || super
         end
 
         # To-do: dismiss this method at Avm::EacRailsBase1::Instance and remove.
