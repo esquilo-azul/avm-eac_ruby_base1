@@ -25,6 +25,11 @@ module Avm
             path.join(RAKEFILE_BASENAME)
           end
 
+          # @return [Boolean]
+          def rake_task?(task_name)
+            rake_tasks.include?(task_name)
+          end
+
           # @return [Array<String>]
           def rake_tasks
             rake('--all', '--tasks').execute!.each_line
