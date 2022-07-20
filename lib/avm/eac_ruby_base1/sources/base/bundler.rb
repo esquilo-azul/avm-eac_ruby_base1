@@ -20,7 +20,7 @@ module Avm
 
           # @return [String]
           def configured_gemfile_path
-            configuration.entry(CONFIGURED_GEMFILE_PATH_ENTRY_KEY).value
+            configuration_entry(CONFIGURED_GEMFILE_PATH_ENTRY_KEY).value
           end
 
           # @return [String]
