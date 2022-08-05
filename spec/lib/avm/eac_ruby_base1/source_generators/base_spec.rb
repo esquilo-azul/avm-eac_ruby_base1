@@ -1,22 +1,24 @@
 # frozen_string_literal: true
 
-require 'avm/tools/runner'
+require 'avm/eac_ruby_base1/source_generators/base'
+require 'avm/source_generators/runner'
 
 RSpec.describe ::Avm::EacRubyBase1::SourceGenerators::Base do
   let(:targets_root) { ::Pathname.new('base_spec_files').expand_path(__dir__) }
 
   %w[mygem dashed-mygem].each do |gem_name|
     context "when runner is executed for #{gem_name}" do
+      let(:stereotype) { 'EacRubyBase1' }
       let(:target_dir) { targets_root.join(gem_name) }
       let(:temp_dir) { ::EacRubyUtils::Fs::Temp.directory }
       let(:gem_path) { temp_dir.join(gem_name) }
       let(:argv) do
-        %w[ruby gems generate --eac-ruby-utils-version=0.35.0
-           --eac-ruby-gem-support-version=0.2.0] + [gem_path.to_path]
+        %w[--option eac-ruby-utils-version:0.35.0 --option eac-ruby-gem-support-version:0.2.0] +
+          [stereotype, gem_path.to_path]
       end
 
       before do
-        ::Avm::Tools::Runner.run(argv: argv)
+        ::Avm::SourceGenerators::Runner.run(argv: argv)
       end
 
       after do

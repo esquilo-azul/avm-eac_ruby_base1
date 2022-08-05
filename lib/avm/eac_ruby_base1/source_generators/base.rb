@@ -1,22 +1,33 @@
 # frozen_string_literal: true
 
 require 'avm/eac_ruby_base1/sources/base'
+require 'avm/source_generators/base'
 require 'eac_templates/core_ext'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacRubyBase1
     module SourceGenerators
-      class Base
+      class Base < ::Avm::SourceGenerators::Base
         IDENT = '  '
         JOBS = %w[root_directory gemspec root_lib version_lib static gemfile_lock].freeze
         TEMPLATE_VARIABLES = %w[lib_path name root_module].freeze
+        OPTIONS = {
+          'eac-ruby-utils-version'.to_sym => 'Version for "eac_ruby_utils" gem.',
+          'eac-ruby-gem-support-version'.to_sym => 'Version for "eac_ruby_gem_support" gem.'
+        }.freeze
 
         enable_speaker
         enable_simple_cache
-        common_constructor :root_directory, :options, default: [{}] do
-          self.root_directory = root_directory.to_pathname
-          run
+
+        class << self
+          def option_list
+            OPTIONS.inject(super) { |a, e| a.option(*e) }
+          end
+        end
+
+        def root_directory
+          target_path
         end
 
         def eac_ruby_gem_support_version
@@ -33,6 +44,15 @@ module Avm
 
         def lib_path
           name.split('-').join('/')
+        end
+
+        def perform
+          infov 'Root directory', root_directory
+          infov 'Gem name', name
+          JOBS.each do |job|
+            infom "Generating #{job.humanize}..."
+            send("generate_#{job}")
+          end
         end
 
         def root_module
@@ -101,15 +121,6 @@ module Avm
           template_apply('version', "lib/#{lib_path}/version.rb")
         end
 
-        def run
-          infov 'Root directory', root_directory
-          infov 'Gem name', name
-          JOBS.each do |job|
-            infom "Generating #{job.humanize}..."
-            send("generate_#{job}")
-          end
-        end
-
         def self_gem_uncached
           ::Avm::EacRubyBase1::Sources::Base.new(root_directory)
         end
@@ -154,7 +165,7 @@ module Avm
           end
 
           def options_version
-            options["#{gem_name}_version".to_sym].if_present do |v|
+            options["#{gem_name}_version".dasherize.to_sym].if_present do |v|
               ::Gem::Version.new(v)
             end
           end
