@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+require 'eac_ruby_utils/core_ext'
+
+%%ROOT_MODULE_OPEN%%
+%%ROOT_MODULE_INNER_IDENTATION%%require_sub __FILE__
+%%ROOT_MODULE_CLOSE%%
