@@ -2,8 +2,8 @@
 
 require 'avm/eac_generic_base0/sources/base'
 require 'avm/eac_ruby_base1/rubygems/version_file'
+require 'avm/eac_ruby_base1/sources/runners'
 require 'avm/eac_ruby_base1/sources/update'
-require 'avm/eac_ruby_base1/sources/runners/bundler'
 require 'avm/version_number'
 require 'eac_ruby_utils/core_ext'
 
