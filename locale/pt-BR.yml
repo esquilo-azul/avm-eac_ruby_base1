@@ -6,3 +6,5 @@ pt-BR:
           no_scm_update_commit_message: "Gem \"%{name}\" (Local): atualiza para '%{version}'."
           scm_update_commit_message: '**/.gitrepo: conserta/atualiza.'
           update_gemfile_lock_commit_message: 'Todas as gems: atualiza.'
+        update_dependency_requirements:
+          commit_message: "Gem \"%{name}\": atualiza para to '%{requirements_list}'."
