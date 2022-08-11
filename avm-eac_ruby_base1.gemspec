@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{lib,locale,template}/**/*']
 
   s.add_dependency 'avm', '~> 0.35', '>= 0.35.1'
-  s.add_dependency 'avm-eac_generic_base0', '~> 0.2'
+  s.add_dependency 'avm-eac_generic_base0', '~> 0.5'
   s.add_dependency 'eac_ruby_utils', '~> 0.95', '>= 0.95.1'
 
   s.add_development_dependency 'aranha-parsers', '~> 0.14', '>= 0.14.1'
