@@ -9,7 +9,7 @@ module Avm
     module Sources
       module Runners
         class UpdateDependenciesRequirements
-          runner_with :help, :subcommands do
+          runner_with :help do
             bool_opt '-a', '--all'
             pos_arg :gem_name, repeat: true, optional: true
           end
