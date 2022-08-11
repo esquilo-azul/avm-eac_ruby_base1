@@ -35,9 +35,16 @@ module Avm
           ::Avm::EacRubyBase1::Rubygems::Gemspec.from_file(source.gemspec_path)
         end
 
+        def parent_bundle
+          return unless source.parent.if_present { |v| v.is_a?(::Avm::EacRubyBase1::Sources::Base) }
+
+          source.parent.bundle_update.execute!
+        end
+
         def update_code
           update_gemspec
           source.bundle.system!
+          parent_bundle
         end
 
         def update_gemspec
