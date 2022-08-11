@@ -14,10 +14,8 @@ module Avm
         end
 
         def bundle_update
-          infom 'Running "bundle update"...'
-          source.bundle('update').execute!
-          infom 'Running "bundle install"...'
-          source.bundle('install').execute!
+          infom 'Running "bundle update && bundle install"...'
+          source.bundle_update.execute!
         end
 
         protected
