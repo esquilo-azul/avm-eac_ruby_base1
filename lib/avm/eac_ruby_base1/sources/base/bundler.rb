@@ -2,6 +2,7 @@
 
 require 'avm/eac_generic_base0/sources/base'
 require 'avm/eac_ruby_base1/sources/base/bundle_command'
+require 'avm/eac_ruby_base1/sources/bundle_update'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -16,6 +17,11 @@ module Avm
           def bundle(*args)
             ::Avm::EacRubyBase1::Sources::Base::BundleCommand.new(self, %w[bundle] + args)
               .envvar_gemfile
+          end
+
+          # @return [Avm::EacRubyBase1::Sources::BundleUpdate]
+          def bundle_update
+            ::Avm::EacRubyBase1::Sources::BundleUpdate.new(self)
           end
 
           # @return [String]
