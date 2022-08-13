@@ -33,8 +33,15 @@ RSpec.describe ::Avm::EacRubyBase1::SourceGenerators::Base do
 
   def directory_to_h(dir)
     dir.children.map do |child|
-      [child.basename.to_path, fs_object_to_h(child)]
+      [fs_object_basename(child), fs_object_to_h(child)]
     end.to_h
+  end
+
+  # @return [String]
+  def fs_object_basename(obj)
+    r = obj.basename.to_path
+    r = '.gitignore' if r == '_gitignore'
+    r
   end
 
   def fs_object_to_h(obj)
