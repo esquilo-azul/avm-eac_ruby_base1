@@ -11,6 +11,7 @@ module Avm
         class UpdateDependenciesRequirements
           runner_with :help do
             bool_opt '-a', '--all'
+            arg_opt '-e', '--exclude', repeat: true
             pos_arg :gem_name, repeat: true, optional: true
           end
 
@@ -32,8 +33,13 @@ module Avm
 
           private
 
+          def exclude?(gem_name)
+            parsed.exclude.include?(gem_name)
+          end
+
           def gem_names_uncached
-            ::Set.new(parsed.gem_name + gem_names_from_all).sort
+            ::Set.new(parsed.gem_name + gem_names_from_all).reject { |gem_name| exclude?(gem_name) }
+              .sort
           end
 
           def gem_names_from_all
