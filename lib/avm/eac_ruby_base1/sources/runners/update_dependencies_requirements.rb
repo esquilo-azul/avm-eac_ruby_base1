@@ -17,6 +17,7 @@ module Avm
 
           def run
             start_banner
+            update_gemfile_lock
             process_all_gems
           end
 
@@ -54,6 +55,11 @@ module Avm
           def start_banner
             runner_context.call(:source_banner)
             infov 'Gems to update', gem_names.count
+          end
+
+          def update_gemfile_lock
+            infom 'Updating Gemfile\'s lock...'
+            runner_context.call(:source).bundle('update').execute!
           end
         end
       end
