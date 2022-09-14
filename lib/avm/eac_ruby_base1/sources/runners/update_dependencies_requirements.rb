@@ -17,11 +17,7 @@ module Avm
 
           def run
             start_banner
-            gem_names.each do |gem_name|
-              infov 'Gem to update', gem_name
-              ::Avm::EacRubyBase1::Sources::UpdateDependencyRequirements
-                .new(runner_context.call(:source), gem_name).perform
-            end
+            process_all_gems
           end
 
           def gemspec
@@ -45,6 +41,14 @@ module Avm
             return [] unless parsed.all?
 
             gemspec.dependencies.map(&:gem_name)
+          end
+
+          def process_all_gems
+            gem_names.each do |gem_name|
+              infov 'Gem to update', gem_name
+              ::Avm::EacRubyBase1::Sources::UpdateDependencyRequirements
+                .new(runner_context.call(:source), gem_name).perform
+            end
           end
 
           def start_banner
