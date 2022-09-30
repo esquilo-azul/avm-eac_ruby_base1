@@ -29,17 +29,34 @@ module Avm
               siblings.map { |s| sibling_gemfile_local_line(s) }.join
             end
 
+            def on_unexisting_gemfile_local
+              return yield unless gemfile_local_path.exist?
+
+              ::EacRubyUtils::Fs::Temp.on_file do |temp_file|
+                ::FileUtils.cp(gemfile_local_path, temp_file)
+                begin
+                  ::FileUtils.rm_f(gemfile_local_path)
+                  yield
+                ensure
+                  ::FileUtils.cp(temp_file, gemfile_local_path)
+                end
+              end
+            end
+
             def run_bundle
-              the_source.bundle.execute!
-            rescue ::RuntimeError
-              the_source.bundle('update').execute!
+              on_unexisting_gemfile_local do
+                the_source.bundle.execute!
+              rescue ::RuntimeError
+                the_source.bundle('update').execute!
+              end
             end
 
             def sibling_gemfile_local_line(sibling)
               ["gem '#{sibling.gem_name}'",
                "path: ::File.expand_path('" +
                  sibling.path.relative_path_from(the_source.path).to_path +
-                 "', __dir__)"].join(', ') + "\n"
+                 "', __dir__)",
+               'require: false'].join(', ') + "\n"
             end
 
             def start_banner
