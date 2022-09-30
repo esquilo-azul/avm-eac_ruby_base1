@@ -59,7 +59,7 @@ module Avm
             end
 
             def bundle_run(*args)
-              ruby_gem.bundle(*args).system!
+              instance.bundle(*args).system!
             end
 
             def conflict?
@@ -79,7 +79,7 @@ module Avm
             end
 
             def instance
-              runner_context.call(:instance)
+              runner_context.call(:subject)
             end
           end
         end
