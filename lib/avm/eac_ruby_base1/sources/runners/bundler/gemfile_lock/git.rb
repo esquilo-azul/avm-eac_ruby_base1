@@ -15,7 +15,7 @@ module Avm
                 return unless check_capability(__method__, :git_repo, :continue)
 
                 infom "Adding \"#{gemfile_lock}\"..."
-                instance.git_repo.command('add', gemfile_lock).execute!
+                git_repo.command('add', gemfile_lock).execute!
                 if rebase_conflict?
                   git_continue_run('rebase')
                 elsif cherry_conflict?
@@ -27,11 +27,15 @@ module Avm
 
               def git_continue_run(command)
                 infom "\"#{command}\" --continue..."
-                cmd = instance.git_repo.command(command, '--continue')
+                cmd = git_repo.command(command, '--continue')
                         .envvar('GIT_EDITOR', 'true')
                 return unless !cmd.system && !conflict?
 
                 fatal_error "\"#{cmd}\" failed and there is no conflict"
+              end
+
+              def git_repo
+                instance.scm.git_repo
               end
 
               def git_reset_checkout
@@ -43,12 +47,12 @@ module Avm
 
               def git_checkout_gemfile_lock
                 infom 'Checkouting...'
-                instance.git_repo.command('checkout', '--', gemfile_lock).system!
+                git_repo.command('checkout', '--', gemfile_lock).system!
               end
 
               def git_reset_gemfile_lock
                 infom 'Reseting...'
-                instance.git_repo.command('reset', gemfile_lock).system! if
+                git_repo.command('reset', gemfile_lock).system! if
                 ::File.exist?(gemfile_lock)
               end
             end

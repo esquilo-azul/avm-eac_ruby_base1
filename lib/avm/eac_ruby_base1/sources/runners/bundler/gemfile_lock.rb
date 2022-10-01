@@ -43,7 +43,7 @@ module Avm
             end
 
             def rebasing?
-              instance.git_repo.root_path.join('.git', 'rebase-merge').exist?
+              git_repo.root_path.join('.git', 'rebase-merge').exist?
             end
 
             def bundle_install
@@ -73,11 +73,11 @@ module Avm
             end
 
             def rebase_conflict?
-              instance.git_repo.root_path.join('.git', 'REBASE_HEAD').exist?
+              git_repo.root_path.join('.git', 'REBASE_HEAD').exist?
             end
 
             def cherry_conflict?
-              instance.git_repo.root_path.join('.git', 'CHERRY_PICK_HEAD').exist?
+              git_repo.root_path.join('.git', 'CHERRY_PICK_HEAD').exist?
             end
 
             def option_or_all?(option)
