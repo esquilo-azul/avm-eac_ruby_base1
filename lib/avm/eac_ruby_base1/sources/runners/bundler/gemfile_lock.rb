@@ -37,8 +37,6 @@ module Avm
             end
 
             def delete_gemfile_lock
-              return unless check_capability(__method__, nil, :delete)
-
               ::FileUtils.rm_f(gemfile_lock)
             end
 
@@ -47,15 +45,11 @@ module Avm
             end
 
             def bundle_install
-              return unless check_capability(__method__, :ruby_gem, :install)
-
               infom '"bundle install"...'
               bundle_run('install')
             end
 
             def bundle_update
-              return unless check_capability(__method__, :ruby_gem, :update)
-
               infom '"bundle update"...'
               bundle_run('update')
             end
@@ -65,7 +59,7 @@ module Avm
             end
 
             def bundle_run(*args)
-              instance.ruby_gem.bundle(*args).system!
+              ruby_gem.bundle(*args).system!
             end
 
             def conflict?
@@ -86,14 +80,6 @@ module Avm
 
             def instance
               runner_context.call(:instance)
-            end
-
-            def check_capability(caller, capability, option)
-              return false unless option.blank? || option_or_all?(option)
-              return true if capability.if_present(true) { |v| instance.respond_to?(v) }
-
-              warn "Cannot run #{caller}: instance has no capability \"#{capability}\""
-              false
             end
           end
         end

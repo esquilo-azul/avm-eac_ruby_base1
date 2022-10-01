@@ -12,8 +12,6 @@ module Avm
               private
 
               def git_continue
-                return unless check_capability(__method__, :git_repo, :continue)
-
                 infom "Adding \"#{gemfile_lock}\"..."
                 git_repo.command('add', gemfile_lock).execute!
                 if rebase_conflict?
@@ -39,8 +37,6 @@ module Avm
               end
 
               def git_reset_checkout
-                return unless check_capability(__method__, :git_repo, nil)
-
                 git_reset_gemfile_lock
                 git_checkout_gemfile_lock
               end
