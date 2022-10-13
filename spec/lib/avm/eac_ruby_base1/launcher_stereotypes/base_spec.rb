@@ -4,10 +4,11 @@ require 'avm/eac_ruby_base1/launcher_stereotypes/base'
 
 RSpec.describe ::Avm::EacRubyBase1::LauncherStereotypes::Base do
   describe '#load_gemspec' do
-    let(:gemname) { 'avm-tools' }
-    let(:self_gemspec) { ::File.join(ROOT_DIR, "#{gemname}.gemspec") }
-    let(:stub_gemspec) { ::File.join(DUMMY_DIR, "#{gemname}_stub", "#{gemname}.gemspec") }
-    let(:stub_expected_version) { '1.0.0.pre.stub' }
+    let(:dummy_dir) { avm_eac_ruby_base1_source(target_path: temp_dir.join(gemname)).path }
+    let(:gemname) { 'avm-eac_ruby_base1' }
+    let(:self_gemspec) { ::File.join(app_root_path, "#{gemname}.gemspec") }
+    let(:stub_gemspec) { ::File.join(dummy_dir, "#{gemname}.gemspec") }
+    let(:stub_expected_version) { '0.0.0' }
 
     it 'does not return same version for different gemspecs with same name' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       stub_spec = described_class.load_gemspec(stub_gemspec)
