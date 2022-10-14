@@ -5,7 +5,10 @@ require 'avm/eac_ruby_base1/launcher/gem/build'
 
 RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Build do
   describe '#output_file' do
-    let(:gem_dir) { ::File.join(DUMMY_DIR, 'ruby_gem_stub') }
+    let(:gem_dir) do
+      avm_eac_ruby_base1_source(target_path: temp_dir.join('ruby_gem_stub'))
+        .path.to_path
+    end
 
     it 'builds .gem file' do # rubocop:disable RSpec/ExampleLength
       expect(::File.directory?(gem_dir)).to eq true
@@ -37,7 +40,7 @@ RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Build do
       expect(build.builded?).to eq true
       expect(::File.exist?(build.output_file)).to eq true
       expect(::File.size(build.output_file)).to be_positive
-      expect(::File.basename(build.output_file)).to eq('ruby_gem_stub-1.0.0.pre.stub.gem')
+      expect(::File.basename(build.output_file)).to eq('ruby_gem_stub-0.0.0.gem')
     end
   end
 end
