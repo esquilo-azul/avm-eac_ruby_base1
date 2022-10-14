@@ -1,12 +1,21 @@
 # frozen_string_literal: true
 
+require 'avm/eac_ruby_base1/launcher/gem/specification'
+
 RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Specification do
-  let(:gemspec_file) { ::File.join(DUMMY_DIR, 'ruby_gem_stub', 'ruby_gem_stub.gemspec') }
+  let(:source_version) { '1.0.0.pre.stub' }
+  let(:source) do
+    r = avm_eac_ruby_base1_source(target_path: temp_dir.join('ruby_gem_stub'))
+    r.version = source_version
+    r
+  end
+  let(:gemspec_file) { source.gemspec_path.to_path }
+  let(:version_file) { source.version_file.path.to_path }
   let(:instance) { described_class.new(gemspec_file) }
 
   describe '#parse_version_file' do
     it 'parses valid version file' do # rubocop:disable RSpec/MultipleExpectations
-      file = ::File.join(DUMMY_DIR, 'ruby_gem_stub', 'lib', 'ruby_gem_stub', 'version.rb')
+      file = version_file
       expect(::File.exist?(file)).to eq true
       version = described_class.parse_version_file(file)
       expect(version).to eq('1.0.0.pre.stub')
