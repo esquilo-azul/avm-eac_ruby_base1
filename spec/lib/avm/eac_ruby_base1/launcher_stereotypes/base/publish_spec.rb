@@ -1,18 +1,23 @@
 # frozen_string_literal: true
 
-require 'avm/projects/stereotypes'
 require 'avm/launcher/context'
+require 'avm/launcher/instances/base'
+require 'avm/eac_ruby_base1/launcher_stereotypes/base/publish'
 
 RSpec.describe ::Avm::EacRubyBase1::LauncherStereotypes::Base::Publish do
-  describe '#publish' do
-    let(:instance) { ::Avm::Launcher::Context.current.instance('/ruby_gem_stub') }
+  let(:context) do
+    r = temp_launcher_context
+    avm_eac_ruby_base1_source(target_path: r.root.real.to_pathname.join('ruby_gem_stub'))
+    r
+  end
 
-    it 'dries run publish for Ruby Gems' do # rubocop:disable RSpec/ExampleLength
+  describe '#publish' do
+    let(:instance) { context.instance('/ruby_gem_stub') }
+
+    it 'dries run publish for Ruby Gems' do
       allow_any_instance_of(described_class).to receive(:gem_versions_uncached).and_return([]) # rubocop:disable RSpec/AnyInstance
       expect(instance).to be_a ::Avm::Launcher::Instances::Base
-      ::Avm::Launcher::Context.current.publish_options = {
-        confirm: false, new: true, stereotype: 'RubyGem'
-      }
+      context.publish_options = { confirm: false, new: true, stereotype: 'RubyGem' }
       described_class.new(instance).run
     end
   end
