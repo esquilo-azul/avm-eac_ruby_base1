@@ -10,23 +10,18 @@ RSpec.describe ::Avm::EacRubyBase1::SourceGenerators::Base do
     context "when runner is executed for #{gem_name}" do
       let(:stereotype) { 'EacRubyBase1' }
       let(:target_dir) { targets_root.join(gem_name) }
-      let(:temp_dir) { ::EacRubyUtils::Fs::Temp.directory }
-      let(:gem_path) { temp_dir.join(gem_name) }
-      let(:argv) do
-        %w[--option eac-ruby-utils-version:0.35.0 --option eac-ruby-gem-support-version:0.2.0] +
-          [stereotype, gem_path.to_path]
+      let(:options) do
+        {
+          'eac-ruby-utils-version' => '0.35.0',
+          'eac-ruby-gem-support-version' => '0.2.0'
+        }
       end
-
-      before do
-        ::Avm::SourceGenerators::Runner.run(argv: argv)
-      end
-
-      after do
-        temp_dir.remove
+      let(:source) do
+        avm_source(stereotype, options.merge(target_basename: gem_name))
       end
 
       it do
-        expect(directory_to_h(gem_path)).to eq(directory_to_h(target_dir))
+        expect(directory_to_h(source.path)).to eq(directory_to_h(target_dir))
       end
     end
   end
