@@ -12,20 +12,10 @@ module Avm
         IDENT = '  '
         JOBS = %w[root_directory gemspec root_lib version_lib static gemfile_lock].freeze
         TEMPLATE_VARIABLES = %w[lib_path name root_module].freeze
-        OPTIONS = {
-          'eac-ruby-utils-version'.to_sym => 'Version for "eac_ruby_utils" gem.',
-          'eac-ruby-gem-support-version'.to_sym => 'Version for "eac_ruby_gem_support" gem.'
-        }.freeze
 
         enable_speaker
         enable_simple_cache
         require_sub __FILE__, include_modules: true
-
-        class << self
-          def option_list
-            OPTIONS.inject(super) { |a, e| a.option(*e) }
-          end
-        end
 
         def root_directory
           target_path
