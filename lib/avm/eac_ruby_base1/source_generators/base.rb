@@ -80,10 +80,6 @@ module Avm
           template_apply('gemspec', "#{name}.gemspec")
         end
 
-        def generate_gemfile_lock
-          self_gem.bundle('install').chdir_root.execute!
-        end
-
         def generate_root_directory
           root_directory.mkpath
         end
