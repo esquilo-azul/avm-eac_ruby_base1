@@ -21,14 +21,6 @@ module Avm
           target_path
         end
 
-        def eac_ruby_gem_support_version
-          dependency_version('eac_ruby_gem_support')
-        end
-
-        def eac_ruby_utils_version
-          dependency_version('eac_ruby_utils')
-        end
-
         def name
           root_directory.basename.to_s
         end
@@ -82,10 +74,6 @@ module Avm
           else
             raise "Unknown template object: #{template}"
           end
-        end
-
-        def dependency_version(gem_name)
-          VersionBuilder.new(gem_name, options).to_s
         end
 
         def generate_gemspec
