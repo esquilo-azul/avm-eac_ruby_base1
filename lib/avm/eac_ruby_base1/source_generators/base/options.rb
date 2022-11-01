@@ -10,9 +10,12 @@ module Avm
         module Options
           common_concern
 
+          GEMFILE_LOCK_OPTION = 'gemfile-lock'.to_sym
+
           OPTIONS = {
             'eac-ruby-utils-version'.to_sym => 'Version for "eac_ruby_utils" gem.',
-            'eac-ruby-gem-support-version'.to_sym => 'Version for "eac_ruby_gem_support" gem.'
+            'eac-ruby-gem-support-version'.to_sym => 'Version for "eac_ruby_gem_support" gem.',
+            GEMFILE_LOCK_OPTION => 'Run "bundle install" at the end'
           }.freeze
 
           module ClassMethods
