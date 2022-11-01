@@ -19,6 +19,7 @@ module Avm
 
         enable_speaker
         enable_simple_cache
+        require_sub __FILE__, include_modules: true
 
         class << self
           def option_list
@@ -129,46 +130,6 @@ module Avm
           target = root_directory.join(to)
           target.dirname.mkpath
           template.child("#{from}.template").apply_to_file(self, target.to_path)
-        end
-
-        class VersionBuilder
-          enable_simple_cache
-          common_constructor :gem_name, :options
-
-          def to_s
-            r = "'~> #{two_segments}'"
-            r += ", '>= #{three_segments}'" if segments.count >= 3 && segments[2].positive?
-            r
-          end
-
-          # @return [Gem::Version]
-          def version
-            (options_version || default_version)
-          end
-
-          def two_segments
-            segments.first(2).join('.')
-          end
-
-          def three_segments
-            segments.first(3).join('.')
-          end
-
-          private
-
-          def segments_uncached
-            version.release.to_s.split('.').map(&:to_i)
-          end
-
-          def default_version
-            ::Gem.loaded_specs[gem_name].version
-          end
-
-          def options_version
-            options["#{gem_name}_version".dasherize.to_sym].if_present do |v|
-              ::Gem::Version.new(v)
-            end
-          end
         end
       end
     end
