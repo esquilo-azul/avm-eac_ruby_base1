@@ -11,6 +11,8 @@ module Avm
         require_sub __FILE__
         include ::Avm::Launcher::Stereotype
 
+        STEREOTYPE_NAME = 'EacRubyBase1'
+
         class << self
           def match?(path)
             Dir.glob(File.join(path.real, '*.gemspec')).any?
@@ -22,6 +24,11 @@ module Avm
 
           def load_gemspec(gemspec_file)
             ::Avm::EacRubyBase1::Launcher::Gem::Specification.new(gemspec_file)
+          end
+
+          # @return [String]
+          def stereotype_name
+            STEREOTYPE_NAME
           end
         end
       end
