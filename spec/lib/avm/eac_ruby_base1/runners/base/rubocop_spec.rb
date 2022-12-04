@@ -21,10 +21,6 @@ require 'avm/eac_ruby_base1/sources/base'
       let(:dir) { send(dir_name) }
       let(:thegem) { ::Avm::EacRubyBase1::Sources::Base.new(dir) }
 
-      before do
-        thegem.bundle.system! if thegem.gemfile_path.exist?
-      end
-
       it "return #{rubocop_version} as Rubocop version" do
         argv = ['-C', dir.to_s, '--', '--version']
         expect { described_class.run(argv: argv) }.to(
