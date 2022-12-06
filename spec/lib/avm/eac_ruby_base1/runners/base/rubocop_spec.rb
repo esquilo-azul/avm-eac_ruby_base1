@@ -10,6 +10,10 @@ require 'avm/eac_ruby_base1/sources/base'
   let(:dir3) { dir1.join('dir3') }
   let(:dir4) { fixtures_root.join('dir4') }
 
+  before do
+    ::Avm::EacRubyBase1::Sources::Base.new(dir3).bundle.execute!
+  end
+
   {
     dir1: '0.48.1',
     dir2: ::Avm::EacRubyBase1::Sources::Base.new(::File.expand_path('../../../../../..', __dir__))
