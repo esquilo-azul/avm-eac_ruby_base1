@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'curb'
 require 'json'
 require 'eac_ruby_utils/simple_cache'
 require 'rubygems'
 require 'eac_cli/speaker'
+require 'aranha/parsers/source_address'
 require 'avm/launcher/publish/base'
 require 'avm/launcher/publish/check_result'
 require 'avm/eac_ruby_base1/launcher/gem'
@@ -98,11 +98,11 @@ module Avm
           end
 
           def gem_versions_uncached
-            http = Curl.get("https://rubygems.org/api/v1/versions/#{gem_spec.name}.json")
-            return JSON.parse!(http.body_str) if /\A2/ =~ http.status
-            return [] if /\A4/ =~ http.status
-
-            raise "#{http} code error: #{http.status}"
+            ::JSON.parse!(
+              ::Aranha::Parsers::SourceAddress.detect_sub(
+                "https://rubygems.org/api/v1/versions/#{gem_spec.name}.json"
+              ).content
+            )
           end
 
           def gem_version_max_uncached
