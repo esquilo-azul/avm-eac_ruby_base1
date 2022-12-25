@@ -36,9 +36,7 @@ module Avm
         end
 
         def parent_bundle
-          return unless source.parent.if_present { |v| v.is_a?(::Avm::EacRubyBase1::Sources::Base) }
-
-          source.parent.bundle_update.execute!
+          source.parent.if_present(&:on_sub_updated)
         end
 
         def update_code

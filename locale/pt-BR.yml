@@ -2,9 +2,8 @@ pt-BR:
   avm:
     eac_ruby_base1:
       sources:
-        update:
-          no_scm_update_commit_message: "Gem \"%{name}\" (Local): atualiza para '%{version}'."
-          scm_update_commit_message: '**/.gitrepo: conserta/atualiza.'
-          update_gemfile_lock_commit_message: 'Todas as gems: atualiza.'
+        base:
+          update_self_commit_message: 'Todas as gems: atualiza.'
+          update_version_no_scm_message: "Gem \"%{application_id}\" (Local): atualiza para '%{version}'."
         update_dependency_requirements:
           commit_message: "Gem \"%{name}\": atualiza para '%{requirements_list}'."
