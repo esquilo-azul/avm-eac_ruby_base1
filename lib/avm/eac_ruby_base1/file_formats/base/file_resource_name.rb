@@ -29,9 +29,8 @@ module Avm
             result_from_patterns(LIBRARY_PATTERNS) { |m| m[1].camelize }
           end
 
-          def result_from_patterns(patterns)
-            patterns.lazy.map { |pattern| pattern.to_parser.parse(path.to_path) }
-              .find(&:present?).if_present { |v| yield(v) }
+          def result_from_patterns(patterns, &block)
+            file_format.result_from_patterns(patterns, path, &block)
           end
 
           def result_from_spec
@@ -39,8 +38,7 @@ module Avm
           end
 
           def result_from_superclass
-            file_format.class.superclass.instance_method(:file_resource_name)
-              .bind_call(file_format, path)
+            file_format.result_from_superclass(path)
           end
         end
       end
