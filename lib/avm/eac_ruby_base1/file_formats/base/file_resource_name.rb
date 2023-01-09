@@ -15,11 +15,12 @@ module Avm
 
           LIBRARY_PATTERNS = [%r{lib/((?!.*/lib/).+)\.rb\z},
                               %r{app/[^/]+/(.+)\.rb\z}].freeze
+          SPEC_PATTERNS = [%r{spec/[^/]+/(.+)_spec\.rb\z}].freeze
 
           # @param path [Pathname]
           # @return [Avm::FileFormats::FileWith]
           def result
-            result_from_library || result_from_superclass
+            result_from_spec || result_from_library || result_from_superclass
           end
 
           private
@@ -31,6 +32,10 @@ module Avm
           def result_from_patterns(patterns)
             patterns.lazy.map { |pattern| pattern.to_parser.parse(path.to_path) }
               .find(&:present?).if_present { |v| yield(v) }
+          end
+
+          def result_from_spec
+            result_from_patterns(SPEC_PATTERNS) { |m| "RSpec.describe('#{m[1].camelize}')" }
           end
 
           def result_from_superclass
