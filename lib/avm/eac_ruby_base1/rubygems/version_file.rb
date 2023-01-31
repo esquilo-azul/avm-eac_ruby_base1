@@ -11,6 +11,8 @@ module Avm
         VERSION_LINE_PATTERN = /\A(\s*)VERSION\s*=\s*[\'\"]([^\'\"]+)[\'\"](\s*)\z/.freeze
 
         def value
+          return nil unless path.file?
+
           path.read.each_line.lazy.map { |line| line_value(line) }.find { |v| v }
         end
 
