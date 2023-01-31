@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/eac_generic_base0/sources/base'
+require 'avm/sources/update_error'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -14,6 +15,8 @@ module Avm
 
           def update_self_content
             bundle_update.execute!
+          rescue ::EacRubyUtils::Envs::ExecutionError
+            raise ::Avm::Sources::UpdateError
           end
         end
       end
