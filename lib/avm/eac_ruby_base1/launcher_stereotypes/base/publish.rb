@@ -103,6 +103,8 @@ module Avm
                 "https://rubygems.org/api/v1/versions/#{gem_spec.name}.json"
               ).content
             )
+          rescue ::Aranha::Parsers::SourceAddress::FetchContentError => e
+            e.request.status == 404 ? [] : raise(e)
           end
 
           def gem_version_max_uncached
