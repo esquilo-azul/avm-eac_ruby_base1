@@ -34,7 +34,7 @@ module Avm
           end
 
           def result_from_spec
-            result_from_patterns(SPEC_PATTERNS) { |m| "RSpec.describe('#{m[1].camelize}')" }
+            result_from_patterns(SPEC_PATTERNS) { |m| "RSpec.describe(#{m[1].camelize})" }
           end
 
           def result_from_superclass
