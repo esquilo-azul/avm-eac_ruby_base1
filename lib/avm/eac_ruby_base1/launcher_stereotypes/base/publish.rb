@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'json'
 require 'eac_ruby_utils/simple_cache'
 require 'rubygems'
 require 'eac_cli/speaker'
-require 'aranha/parsers/source_address'
 require 'avm/launcher/publish/base'
 require 'avm/launcher/publish/check_result'
 require 'avm/eac_ruby_base1/launcher/gem'
+require 'eac_envs/http/request'
+require 'eac_envs/http/response'
 
 module Avm
   module EacRubyBase1
@@ -97,14 +97,13 @@ module Avm
             gem_version_max.present? && ::Gem::Version.new(gem_spec.version) < gem_version_max
           end
 
+          # @return [Array]
           def gem_versions_uncached
-            ::JSON.parse!(
-              ::Aranha::Parsers::SourceAddress.detect_sub(
-                "https://rubygems.org/api/v1/versions/#{gem_spec.name}.json"
-              ).content
-            )
-          rescue ::Aranha::Parsers::SourceAddress::FetchContentError => e
-            e.request.status == 404 ? [] : raise(e)
+            ::EacEnvs::Http::Request.new
+              .url("https://rubygems.org/api/v1/versions/#{gem_spec.name}.json")
+              .response.body_data_or_raise
+          rescue EacEnvs::Http::Response => e
+            e.status == 404 ? [] : raise(e)
           end
 
           def gem_version_max_uncached
