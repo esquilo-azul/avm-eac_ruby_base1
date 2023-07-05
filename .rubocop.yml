@@ -11,11 +11,23 @@ Metrics/BlockLength:
     - '**/*.gemspec'
     - 'spec/**/*_spec.rb'
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
 Layout/LineLength:
   Max: 100
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
 
 Rails/DynamicFindBy:
   Enabled: false
@@ -35,6 +47,9 @@ Style/AsciiComments:
 Style/Documentation:
   Enabled: false
 
+Style/ExponentialNotation:
+  Enabled: true
+
 Style/HashEachMethods:
   Enabled: true
 
@@ -42,4 +57,7 @@ Style/HashTransformKeys:
   Enabled: true
 
 Style/HashTransformValues:
+  Enabled: true
+
+Style/SlicingWithRange:
   Enabled: true

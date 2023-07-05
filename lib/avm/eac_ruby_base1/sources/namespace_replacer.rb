@@ -8,7 +8,7 @@ module Avm
 
         def concat_regex(regexes)
           r = regexes.first
-          regexes[1..-1].each do |x|
+          regexes[1..].each do |x|
             r = ::Regexp.new(r.source + x.source)
           end
           r
