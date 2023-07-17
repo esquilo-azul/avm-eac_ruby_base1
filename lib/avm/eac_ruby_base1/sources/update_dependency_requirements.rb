@@ -48,7 +48,9 @@ module Avm
         def update_gemspec
           gemspec.dependency(gem_name).version_specs = requirements_list
           gemspec.write(source.gemspec_path)
-          source.bundle('exec', 'rubocop', source.gemspec_path).system!
+          ::Avm::EacRubyBase1::Rubocop.new(
+            source.path, ['-a', '--ignore-parent-exclusion', source.gemspec_path]
+          ).run
         end
       end
     end
