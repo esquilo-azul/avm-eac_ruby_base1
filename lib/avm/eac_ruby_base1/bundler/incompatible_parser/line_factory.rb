@@ -4,6 +4,7 @@ require 'eac_ruby_utils/core_ext'
 require 'avm/eac_ruby_base1/bundler/incompatible_parser/depends_on'
 require 'avm/eac_ruby_base1/bundler/incompatible_parser/gem_conflict'
 require 'avm/eac_ruby_base1/bundler/incompatible_parser/in_gemfile'
+require 'avm/eac_ruby_base1/bundler/incompatible_parser/ruby_requirement'
 require 'avm/eac_ruby_base1/bundler/incompatible_parser/version_requirement'
 
 module Avm
@@ -11,7 +12,7 @@ module Avm
     module Bundler
       class IncompatibleParser
         class LineFactory
-          TYPES = [GemConflict, InGemfile, DependsOn, VersionRequirement].freeze
+          TYPES = [GemConflict, InGemfile, DependsOn, RubyRequirement, VersionRequirement].freeze
 
           enable_simple_cache
           common_constructor :content do

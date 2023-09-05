@@ -56,6 +56,10 @@ module Avm
             current_gem_conflict.add_depends_on(result)
           end
 
+          def on_ruby_requirement_line(result)
+            # Do nothing
+          end
+
           def on_version_requirement_line(result)
             current_gem_conflict.add_version_requirement(result)
           end
