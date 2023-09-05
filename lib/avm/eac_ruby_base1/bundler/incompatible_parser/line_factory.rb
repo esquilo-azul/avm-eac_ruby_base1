@@ -4,6 +4,7 @@ require 'eac_ruby_utils/core_ext'
 require 'avm/eac_ruby_base1/bundler/incompatible_parser/depends_on'
 require 'avm/eac_ruby_base1/bundler/incompatible_parser/gem_conflict'
 require 'avm/eac_ruby_base1/bundler/incompatible_parser/in_gemfile'
+require 'avm/eac_ruby_base1/bundler/incompatible_parser/version_requirement'
 
 module Avm
   module EacRubyBase1
