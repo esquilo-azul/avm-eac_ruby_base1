@@ -25,9 +25,8 @@ module Avm
         end
 
         def format_gemspec
-          ::Avm::EacRubyBase1::Rubocop.new(
-            source.path, ['-a', '--ignore-parent-exclusion', source.gemspec_path]
-          ).run
+          source.rubocop_command.ignore_parent_exclusion(true).autocorrect(true)
+            .file(source.gemspec_path).system!
         end
 
         # @return [Array<String>]
