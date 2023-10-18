@@ -24,6 +24,12 @@ module Avm
                          __locale: source.locale)
         end
 
+        def format_gemspec
+          ::Avm::EacRubyBase1::Rubocop.new(
+            source.path, ['-a', '--ignore-parent-exclusion', source.gemspec_path]
+          ).run
+        end
+
         # @return [Array<String>]
         def requirements_list_uncached
           ::Avm::EacRubyBase1::PreferredVersionRequirements.new(
@@ -48,9 +54,7 @@ module Avm
         def update_gemspec
           gemspec.dependency(gem_name).version_specs = requirements_list
           gemspec.write(source.gemspec_path)
-          ::Avm::EacRubyBase1::Rubocop.new(
-            source.path, ['-a', '--ignore-parent-exclusion', source.gemspec_path]
-          ).run
+          format_gemspec
         end
       end
     end
