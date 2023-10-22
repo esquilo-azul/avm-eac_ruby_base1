@@ -10,6 +10,8 @@ module Avm
         enable_simple_cache
         common_constructor :source, :gem_name
 
+        RUBOCOP_OK_CODES = [256].freeze
+
         def perform
           source.scm.commit_if_change(commit_message) { update_code }
         end
@@ -26,7 +28,8 @@ module Avm
 
         def format_gemspec
           source.rubocop_command.ignore_parent_exclusion(true).autocorrect(true)
-            .file(source.gemspec_path).system!
+            .file(source.gemspec_path)
+            .execute!(exit_outputs: RUBOCOP_OK_CODES.map { |k| [k, nil] }.to_h)
         end
 
         # @return [Array<String>]
