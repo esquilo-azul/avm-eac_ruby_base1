@@ -16,6 +16,12 @@ RSpec.describe Avm::EacRubyBase1::Sources::Base, '#bundler' do
     end
   end
 
+  describe '#gemfile_source' do
+    it do
+      expect(mygem.gemfile_source).to eq(Addressable::URI.parse('https://rubygems.org'))
+    end
+  end
+
   describe '#rake' do
     specify do
       expect(mygem.rake('mygem:stub').execute!).to include('Stub!')

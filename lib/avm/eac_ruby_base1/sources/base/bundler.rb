@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'addressable'
 require 'avm/eac_generic_base0/sources/base'
 require 'avm/eac_ruby_base1/sources/base/bundle_command'
 require 'avm/eac_ruby_base1/sources/bundle_update'
@@ -12,6 +13,9 @@ module Avm
         module Bundler
           CONFIGURED_GEMFILE_PATH_ENTRY_KEY = 'ruby.gemfile_path'
           DEFAULT_GEMFILE_PATH = 'Gemfile'
+          GEMFILE_SOURCE_PARSER = /^\s*source\s+['"]([^'"]+)['"]$/.to_parser do |m|
+            ::Addressable::URI.parse(m[1])
+          end
 
           # @return [Avm::EacRubyBase1::Sources::Base::BundleCommand]
           def bundle(*args)
@@ -51,6 +55,11 @@ module Avm
           # @return [Pathname]
           def gemfile_path
             path.join(configured_gemfile_path || default_gemfile_path)
+          end
+
+          # @return [Addressable::URI]
+          def gemfile_source
+            GEMFILE_SOURCE_PARSER.parse!(gemfile_path.read)
           end
         end
       end
