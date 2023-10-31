@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Rails/IndexWith:
-  Exclude:
-  - lib/avm/eac_ruby_base1/sources/update_dependency_requirements.rb
 Rails/NegateInclude:
   Exclude:
   - lib/avm/eac_ruby_base1/sources/tests/multiple/decorated_gem.rb

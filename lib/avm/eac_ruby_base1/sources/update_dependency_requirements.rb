@@ -29,7 +29,7 @@ module Avm
         def format_gemspec
           source.rubocop_command.ignore_parent_exclusion(true).autocorrect(true)
             .file(source.gemspec_path)
-            .execute!(exit_outputs: RUBOCOP_OK_CODES.map { |k| [k, nil] }.to_h)
+            .execute!(exit_outputs: RUBOCOP_OK_CODES.index_with { |_k| nil })
         end
 
         # @return [Array<String>]
