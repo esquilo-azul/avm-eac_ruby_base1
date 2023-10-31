@@ -11,7 +11,7 @@ RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Build do
     end
 
     it 'builds .gem file' do # rubocop:disable RSpec/ExampleLength
-      expect(::File.directory?(gem_dir)).to eq true
+      expect(::File.directory?(gem_dir)).to be true
       build = described_class.new(gem_dir)
 
       # Open/close
@@ -31,14 +31,14 @@ RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Build do
     private
 
     def assert_closed(build)
-      expect(build.output_file.blank?).to eq true
-      expect(build.builded?).to eq false
+      expect(build.output_file.blank?).to be true
+      expect(build.builded?).to be false
     end
 
     def assert_open(build) # rubocop:disable Metrics/AbcSize
-      expect(build.output_file.present?).to eq true
-      expect(build.builded?).to eq true
-      expect(::File.exist?(build.output_file)).to eq true
+      expect(build.output_file.present?).to be true
+      expect(build.builded?).to be true
+      expect(::File.exist?(build.output_file)).to be true
       expect(::File.size(build.output_file)).to be_positive
       expect(::File.basename(build.output_file)).to eq('ruby_gem_stub-0.0.0.gem')
     end
