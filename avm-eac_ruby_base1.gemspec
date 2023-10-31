@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Put here de description.'
 
   s.files = Dir['{lib,locale,template}/**/*']
+  s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'aranha-parsers', '~> 0.21'
   s.add_dependency 'avm', '~> 0.81'
