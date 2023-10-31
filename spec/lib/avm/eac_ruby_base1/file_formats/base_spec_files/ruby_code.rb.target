@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 def abc(_arg)
   123
 end
