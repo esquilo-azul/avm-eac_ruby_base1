@@ -2,8 +2,8 @@
 
 require 'avm/eac_ruby_base1/sources/base'
 
-::RSpec.describe ::Avm::EacRubyBase1::Sources::Base, '#bundler' do
-  let(:mygem_path) { ::Pathname.new(__dir__).join('bundler_spec_files', 'mygem') }
+RSpec.describe Avm::EacRubyBase1::Sources::Base, '#bundler' do
+  let(:mygem_path) { Pathname.new(__dir__).join('bundler_spec_files', 'mygem') }
   let(:mygem) { described_class.new(mygem_path) }
 
   before do

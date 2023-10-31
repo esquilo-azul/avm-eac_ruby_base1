@@ -2,7 +2,7 @@
 
 require 'avm/eac_ruby_base1/preferred_version_requirements'
 
-::RSpec.describe ::Avm::EacRubyBase1::PreferredVersionRequirements do
+RSpec.describe Avm::EacRubyBase1::PreferredVersionRequirements do
   describe '#to_requirements_list' do
     {
       '0.1.0' => ['~> 0.1'],

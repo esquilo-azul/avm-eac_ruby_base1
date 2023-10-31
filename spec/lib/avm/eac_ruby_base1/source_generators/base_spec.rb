@@ -3,7 +3,7 @@
 require 'avm/eac_ruby_base1/source_generators/base'
 require 'avm/source_generators/runner'
 
-RSpec.describe ::Avm::EacRubyBase1::SourceGenerators::Base do
+RSpec.describe Avm::EacRubyBase1::SourceGenerators::Base do
   include_examples 'avm_source_generated', __FILE__, 'EacRubyBase1',
                    {
                      'eac-ruby-utils-version' => '0.35.0',

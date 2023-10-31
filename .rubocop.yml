@@ -1,23 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantConstantBase:
-  Exclude:
-  - Gemfile
-  - spec/lib/avm/eac_ruby_base1/bundler/incompatible_parser_spec.rb
-  - spec/lib/avm/eac_ruby_base1/file_formats/base_spec.rb
-  - spec/lib/avm/eac_ruby_base1/launcher/gem/build_spec.rb
-  - spec/lib/avm/eac_ruby_base1/launcher/gem/specification_spec.rb
-  - spec/lib/avm/eac_ruby_base1/launcher_stereotypes/base/publish_spec.rb
-  - spec/lib/avm/eac_ruby_base1/launcher_stereotypes/base_spec.rb
-  - spec/lib/avm/eac_ruby_base1/preferred_version_requirements_spec.rb
-  - spec/lib/avm/eac_ruby_base1/rubygems/version_file_spec.rb
-  - spec/lib/avm/eac_ruby_base1/runners/base/rubocop_spec.rb
-  - spec/lib/avm/eac_ruby_base1/source_generators/base_spec.rb
-  - spec/lib/avm/eac_ruby_base1/sources/base/bundler_spec.rb
-  - spec/lib/avm/eac_ruby_base1/sources/base_spec.rb
-  - spec/rubocop_spec.rb
-  - spec/spec_helper.rb
 Style/RedundantReturn:
   Exclude:
   - lib/avm/eac_ruby_base1/rubocop/gemfile.rb

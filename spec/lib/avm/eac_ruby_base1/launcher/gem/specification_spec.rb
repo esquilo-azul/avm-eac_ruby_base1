@@ -2,7 +2,7 @@
 
 require 'avm/eac_ruby_base1/launcher/gem/specification'
 
-RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Specification do
+RSpec.describe Avm::EacRubyBase1::Launcher::Gem::Specification do
   let(:source_version) { '1.0.0.pre.stub' }
   let(:source) do
     r = avm_eac_ruby_base1_source(target_path: temp_dir.join('ruby_gem_stub'))
@@ -16,14 +16,14 @@ RSpec.describe ::Avm::EacRubyBase1::Launcher::Gem::Specification do
   describe '#parse_version_file' do
     it 'parses valid version file' do # rubocop:disable RSpec/MultipleExpectations
       file = version_file
-      expect(::File.exist?(file)).to be true
+      expect(File.exist?(file)).to be true
       version = described_class.parse_version_file(file)
       expect(version).to eq('1.0.0.pre.stub')
     end
 
     it 'does not parse invalid version file' do # rubocop:disable RSpec/MultipleExpectations
       file = __FILE__
-      expect(::File.exist?(file)).to be true
+      expect(File.exist?(file)).to be true
       version = described_class.parse_version_file(file)
       expect(version).to be_nil
     end
