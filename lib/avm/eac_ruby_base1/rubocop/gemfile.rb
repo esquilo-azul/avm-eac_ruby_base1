@@ -33,7 +33,8 @@ module Avm
         def find_gem(path)
           r = ::Avm::EacRubyBase1::Sources::Base.new(path)
           return r if r.gemfile_path.exist?
-          return find_gem(path.dirname) unless path.root?
+
+          find_gem(path.dirname) unless path.root?
         end
       end
     end

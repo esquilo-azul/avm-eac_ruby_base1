@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/RedundantReturn:
-  Exclude:
-  - lib/avm/eac_ruby_base1/rubocop/gemfile.rb
 Style/StringConcatenation:
   Exclude:
   - lib/avm/eac_ruby_base1/source_generators/base.rb
