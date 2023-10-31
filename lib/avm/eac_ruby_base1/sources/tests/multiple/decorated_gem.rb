@@ -42,7 +42,7 @@ module Avm
             end
 
             def can_remove_gemfile_lock?
-              !files.include?(gemfile_lock_path.relative_path_from(root))
+              files.exclude?(gemfile_lock_path.relative_path_from(root))
             end
           end
         end
