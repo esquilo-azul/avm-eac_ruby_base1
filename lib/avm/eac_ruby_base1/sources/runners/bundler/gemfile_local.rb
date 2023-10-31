@@ -52,10 +52,9 @@ module Avm
             end
 
             def sibling_gemfile_local_line(sibling)
-              ["gem '#{sibling.gem_name}'",
-               "path: ::File.expand_path('" +
-                 sibling.path.relative_path_from(the_source.path).to_path +
-                 "', __dir__)",
+              ["gem '#{sibling.gem_name}'", # rubocop:disable Style/StringConcatenation
+               ["path: ::File.expand_path('",
+                sibling.path.relative_path_from(the_source.path).to_path, "', __dir__)"].join,
                'require: false'].join(', ') + "\n"
             end
 

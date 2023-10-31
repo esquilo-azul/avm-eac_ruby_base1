@@ -54,7 +54,7 @@ module Avm
             end
 
             def print_requirement(req)
-              infov '  ' + requirement_title(req), requirement_value(req)
+              infov "  #{requirement_title(req)}", requirement_value(req)
             end
 
             def requirement_stack(req)

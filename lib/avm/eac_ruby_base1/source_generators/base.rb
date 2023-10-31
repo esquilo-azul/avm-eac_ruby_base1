@@ -44,7 +44,7 @@ module Avm
 
         def root_module_close
           root_module_components.count.times.map do |index|
-            (IDENT * index) + 'end'
+            "#{IDENT * index}end"
           end.reverse.join("\n")
         end
 
@@ -54,7 +54,7 @@ module Avm
 
         def root_module_open
           root_module_components.each_with_index.map do |component, index|
-            (IDENT * index) + 'module ' + component
+            "#{IDENT * index}module #{component}"
           end.join("\n")
         end
 
