@@ -25,7 +25,7 @@ module Avm
 
         # @return [Array<Avm::EacRubyBase1::Bundler::Gemfile::Dependency>]
         def dependencies
-          lines.lazy.map { |line| DEPENDENCY_LINE_PARSER.parse(line) }.reject(&:blank?)
+          lines.lazy.map { |line| DEPENDENCY_LINE_PARSER.parse(line) }.compact_blank
             .map { |gem_name| dependency(gem_name) }.to_a
         end
 
