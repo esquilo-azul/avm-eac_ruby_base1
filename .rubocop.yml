@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Lint/SymbolConversion:
-  Exclude:
-  - lib/avm/eac_ruby_base1/source_generators/base/options.rb
 RSpec/BeEq:
   Exclude:
   - spec/lib/avm/eac_ruby_base1/launcher/gem/build_spec.rb
