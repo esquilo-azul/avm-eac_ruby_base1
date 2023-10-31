@@ -5,10 +5,10 @@ require 'avm/eac_ruby_base1/sources/base'
 
 ::RSpec.describe ::Avm::EacRubyBase1::Runners::Base::Rubocop do
   let(:fixtures_root) { ::Pathname.new(__dir__).expand_path.join('rubocop_spec_files') }
-  let(:dir1) { fixtures_root.join('dir1') }
-  let(:dir2) { fixtures_root.join('dir2') }
-  let(:dir3) { dir1.join('dir3') }
-  let(:dir4) { fixtures_root.join('dir4') }
+  let(:dir1) { fixtures_root.join('dir1') } # rubocop:disable RSpec/IndexedLet
+  let(:dir2) { fixtures_root.join('dir2') } # rubocop:disable RSpec/IndexedLet
+  let(:dir3) { dir1.join('dir3') } # rubocop:disable RSpec/IndexedLet
+  let(:dir4) { fixtures_root.join('dir4') } # rubocop:disable RSpec/IndexedLet
 
   before do
     ::Avm::EacRubyBase1::Sources::Base.new(dir3).bundle.execute!

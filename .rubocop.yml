@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-RSpec/IndexedLet:
-  Exclude:
-  - spec/lib/avm/eac_ruby_base1/runners/base/rubocop_spec.rb
 RSpec/SpecFilePathFormat:
   Exclude:
   - spec/lib/avm/eac_ruby_base1/sources/base/bundler_spec.rb
