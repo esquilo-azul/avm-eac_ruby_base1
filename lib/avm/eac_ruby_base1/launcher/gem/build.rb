@@ -104,8 +104,8 @@ module Avm
             end
           end
 
-          def on_clean_ruby
-            on_clear_envvars('BUNDLE', 'RUBY') { yield }
+          def on_clean_ruby(&block)
+            on_clear_envvars('BUNDLE', 'RUBY', &block)
           end
 
           def on_clear_envvars(*start_with_vars)
