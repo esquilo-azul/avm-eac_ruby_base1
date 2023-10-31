@@ -59,7 +59,7 @@ module Avm
 
           def version_unpublished_check_result
             ::Avm::Launcher::Publish::CheckResult.pending("#{gem_spec.full_name} not found " \
-                'in RubyGems')
+                                                          'in RubyGems')
           end
 
           def source_uncached

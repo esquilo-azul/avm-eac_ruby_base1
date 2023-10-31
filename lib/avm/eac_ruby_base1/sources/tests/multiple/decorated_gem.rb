@@ -18,7 +18,7 @@ module Avm
 
               unless can_remove_gemfile_lock?
                 raise '"bundle install" failed and the Gemfile.lock is part of gem' \
-                  '(Should be changed by developer)'
+                      '(Should be changed by developer)'
               end
 
               prepare_with_removable_gemfile_lock
