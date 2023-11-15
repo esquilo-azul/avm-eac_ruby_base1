@@ -56,7 +56,8 @@ module Avm
 
           # @return [Array<String>]
           def rubocop_command_args
-            r = ['--config', source.rubocop_config_path]
+            r = []
+            r += ['--config', source.rubocop_config_path] if source.rubocop_config_path.file?
             r << ignore_parent_exclusion_option if ignore_parent_exclusion?
             if autocorrect_all?
               r << autocorrect_all_option
