@@ -17,7 +17,7 @@ module Avm
 
         # @return [String]
         def target_content
-          siblings.map { |s| sibling_gemfile_local_line(s) }.join
+          siblings.map(&:target_content).join
         end
 
         # @return [Pathname]
@@ -47,15 +47,6 @@ module Avm
           end
         end
 
-        # @param sibling [?}
-        # @return [String]
-        def sibling_gemfile_local_line(sibling)
-          ["gem '#{sibling.gem_name}'", # rubocop:disable Style/StringConcatenation
-           ["path: ::File.expand_path('",
-            sibling.path.relative_path_from(source.path).to_path, "', __dir__)"].join,
-           'require: false'].join(', ') + "\n"
-        end
-
         # @return [void]
         def write_target_file
           target_path.write(target_content)
@@ -65,9 +56,13 @@ module Avm
 
         def siblings_uncached
           source.parent.if_present([]) do |v|
-            v.subs.select { |sub| dependency_sub?(sub) }
+            v.subs.select { |sub| dependency_sub?(sub) }.map do |sub|
+              ::Avm::EacRubyBase1::Sources::GemfileLocal::Sibling.new(self, sub)
+            end
           end
         end
+
+        require_sub __FILE__
       end
     end
   end
