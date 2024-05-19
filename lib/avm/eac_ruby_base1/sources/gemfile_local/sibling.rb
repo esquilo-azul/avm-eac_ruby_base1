@@ -11,6 +11,11 @@ module Avm
           delegate :relative_path, to: :source
 
           # @return [String]
+          def gemspec_relative_path
+            source.gemspec_path.relative_path_from(gemfile_local.source.path).to_path
+          end
+
+          # @return [String]
           def root_relative_path
             source.path.relative_path_from(gemfile_local.source.path).to_path
           end
