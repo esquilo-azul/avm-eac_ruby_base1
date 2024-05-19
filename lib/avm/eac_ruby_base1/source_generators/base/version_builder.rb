@@ -19,7 +19,7 @@ module Avm
 
           # @return [Gem::Version]
           def version
-            (options_version || default_version)
+            options_version || default_version
           end
 
           def two_segments
