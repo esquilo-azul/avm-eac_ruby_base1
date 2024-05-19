@@ -19,7 +19,7 @@ module Avm
           def target_content
             ["gem '#{source.gem_name}'", # rubocop:disable Style/StringConcatenation
              "path: #{gem_option_path}",
-             'require: false'].join(', ') + "\n"
+             "require: #{gem_option_require}"].join(', ') + "\n"
           end
 
           protected
@@ -27,6 +27,11 @@ module Avm
           # @return [String]
           def gem_option_path
             ["::File.expand_path('", root_relative_path, "', __dir__)"].join
+          end
+
+          # @return [String]
+          def gem_option_require
+            'false'
           end
         end
       end
