@@ -17,9 +17,7 @@ module Avm
 
           # @return [String]
           def target_content
-            ["gem '#{source.gem_name}'", # rubocop:disable Style/StringConcatenation
-             "path: #{gem_option_path}",
-             "require: #{gem_option_require}"].join(', ') + "\n"
+            "gem '#{source.gem_name}', #{gem_options_content}\n"
           end
 
           protected
@@ -32,6 +30,11 @@ module Avm
           # @return [String]
           def gem_option_require
             'false'
+          end
+
+          # @return [String]
+          def gem_options_content
+            %w[path require].map { |v| [v, send("gem_option_#{v}")].join(': ') }.join(', ')
           end
         end
       end
