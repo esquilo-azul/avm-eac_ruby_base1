@@ -5,10 +5,15 @@ require 'avm/launcher/instances/base'
 require 'avm/eac_ruby_base1/launcher_stereotypes/base/publish'
 
 RSpec.describe Avm::EacRubyBase1::LauncherStereotypes::Base::Publish do
-  let(:context) do
-    r = temp_launcher_context
-    avm_eac_ruby_base1_source(target_path: r.root.real.to_pathname.join('ruby_gem_stub'))
-    r
+  let(:context) { temp_launcher_context }
+  let(:application_id) { 'ruby_gem_stub' }
+  let(:source_path) { temp_dir.join(application_id) }
+
+  before do
+    EacConfig::Node.context.current.entry("#{application_id}.avm_type").value = 'Application'
+    EacConfig::Node.context.current.entry("#{application_id}_dev.install.path").value =
+      source_path.to_path
+    avm_eac_ruby_base1_source(target_path: source_path)
   end
 
   describe '#publish' do
