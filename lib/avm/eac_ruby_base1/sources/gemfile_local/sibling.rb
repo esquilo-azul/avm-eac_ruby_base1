@@ -22,10 +22,15 @@ module Avm
 
           # @return [String]
           def target_content
-            "gem '#{source.gem_name}', #{gem_options_content}\n"
+            "gem '#{source.gem_name}', #{gem_options_content} if #{condition_content}\n"
           end
 
           protected
+
+          # @return [String]
+          def condition_content
+            "::File.directory?('#{gemspec_relative_path}')"
+          end
 
           # @return [String]
           def gem_option_path
