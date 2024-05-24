@@ -17,16 +17,12 @@ module Avm
         enable_simple_cache
         require_sub __FILE__, include_modules: true
 
-        def root_directory
-          target_path
-        end
-
         def lib_path
           name.split('-').join('/')
         end
 
         def perform
-          infov 'Root directory', root_directory
+          infov 'Root directory', target_path
           infov 'Gem name', name
           JOBS.each do |job|
             infom "Generating #{job.humanize}..."
@@ -65,7 +61,7 @@ module Avm
         end
 
         def generate_root_directory
-          root_directory.mkpath
+          target_path.mkpath
         end
 
         def generate_root_lib
@@ -73,7 +69,7 @@ module Avm
         end
 
         def generate_static
-          template.child('static').apply(self, root_directory)
+          template.child('static').apply(self, target_path)
         end
 
         def generate_version_lib
@@ -81,11 +77,11 @@ module Avm
         end
 
         def self_gem_uncached
-          ::Avm::EacRubyBase1::Sources::Base.new(root_directory)
+          ::Avm::EacRubyBase1::Sources::Base.new(target_path)
         end
 
         def template_apply(from, to)
-          target = root_directory.join(to)
+          target = target_path.join(to)
           target.dirname.mkpath
           template.child(from).apply_to_file(self, target.to_path)
         end
