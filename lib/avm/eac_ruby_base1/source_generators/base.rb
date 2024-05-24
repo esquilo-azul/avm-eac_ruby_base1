@@ -21,10 +21,6 @@ module Avm
           target_path
         end
 
-        def name
-          root_directory.basename.to_s
-        end
-
         def lib_path
           name.split('-').join('/')
         end
