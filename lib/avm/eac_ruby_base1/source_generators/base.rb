@@ -103,7 +103,7 @@ module Avm
         def template_apply(from, to)
           target = root_directory.join(to)
           target.dirname.mkpath
-          template.child("#{from}.template").apply_to_file(self, target.to_path)
+          template.child(from).apply_to_file(self, target.to_path)
         end
       end
     end
