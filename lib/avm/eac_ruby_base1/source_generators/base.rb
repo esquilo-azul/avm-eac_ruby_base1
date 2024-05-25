@@ -17,6 +17,16 @@ module Avm
         enable_simple_cache
         require_sub __FILE__, include_modules: true
 
+        # @return [String]
+        def gemspec_extra
+          gemspec_extra_lines.map { |line| "\n#{IDENT}#{line}" }.join
+        end
+
+        # @return [Array<String>]
+        def gemspec_extra_lines
+          []
+        end
+
         def lib_path
           name.split('-').join('/')
         end
