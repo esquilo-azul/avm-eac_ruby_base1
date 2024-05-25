@@ -10,7 +10,7 @@ module Avm
     module SourceGenerators
       class Base < ::Avm::SourceGenerators::Base
         IDENT = '  '
-        JOBS = %w[root_directory gemspec root_lib version_lib static gemfile_lock].freeze
+        JOBS = %w[gemspec root_lib version_lib gemfile_lock].freeze
         TEMPLATE_VARIABLES = %w[lib_path name root_module].freeze
 
         enable_speaker
@@ -19,15 +19,6 @@ module Avm
 
         def lib_path
           name.split('-').join('/')
-        end
-
-        def perform
-          infov 'Root directory', target_path
-          infov 'Gem name', name
-          JOBS.each do |job|
-            infom "Generating #{job.humanize}..."
-            send("generate_#{job}")
-          end
         end
 
         def root_module
@@ -60,20 +51,17 @@ module Avm
           template_apply('gemspec', "#{name}.gemspec")
         end
 
-        def generate_root_directory
-          target_path.mkpath
-        end
-
         def generate_root_lib
           template_apply('root_lib', "lib/#{lib_path}.rb")
         end
 
-        def generate_static
-          template.child('static').apply(self, target_path)
-        end
-
         def generate_version_lib
           template_apply('version', "lib/#{lib_path}/version.rb")
+        end
+
+        # @return [EacTemplates::Modules::Base]
+        def root_template
+          template.child('static')
         end
 
         def self_gem_uncached
