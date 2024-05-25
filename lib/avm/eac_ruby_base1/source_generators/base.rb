@@ -64,18 +64,6 @@ module Avm
 
         protected
 
-        def apply_to_root_directory(template, subpath)
-          if template.is_a?(::EacTemplates::Variables::Directory)
-            template.children.each do |child|
-              apply_to_root_directory(child, subpath.join(child.basename))
-            end
-          elsif template.is_a?(::EacTemplates::Variables::File)
-            template.apply_to_file(template_variables, root_directory.join(subpath))
-          else
-            raise "Unknown template object: #{template}"
-          end
-        end
-
         def generate_gemspec
           template_apply('gemspec', "#{name}.gemspec")
         end
