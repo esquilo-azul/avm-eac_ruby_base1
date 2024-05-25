@@ -14,7 +14,7 @@ module Avm
 
         def internal_apply(files)
           ::Avm::EacRubyBase1::Rubocop.new('.', ['-a', '--ignore-parent-exclusion'] + files).run
-          super(files)
+          super
         end
       end
     end
