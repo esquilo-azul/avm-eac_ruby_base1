@@ -9,6 +9,8 @@ module Avm
   module EacRubyBase1
     module SourceGenerators
       class Base < ::Avm::SourceGenerators::Base
+        GEMSPEC_FILES_DIRECTORY_PATHS = %w[lib].freeze
+        GEMSPEC_FILES_FILE_PATHS = [].freeze
         IDENT = '  '
         JOBS = %w[gemspec root_lib version_lib gemfile_lock].freeze
         TEMPLATE_VARIABLES = %w[lib_path name root_module].freeze
@@ -25,6 +27,27 @@ module Avm
         # @return [Array<String>]
         def gemspec_extra_lines
           []
+        end
+
+        # @return [String]
+        def gemspec_files_value
+          "Dir[#{gemspec_files_paths.map { |path| "'#{path}'" }.join(', ')}]"
+        end
+
+        # @return [Array<String>]
+        def gemspec_files_paths
+          ["{#{gemspec_files_directory_paths.sort.join(',')}}/**/*"] +
+            gemspec_files_file_paths.sort
+        end
+
+        # @return [Array<String>]
+        def gemspec_files_directory_paths
+          GEMSPEC_FILES_DIRECTORY_PATHS
+        end
+
+        # @return [Array<String>]
+        def gemspec_files_file_paths
+          GEMSPEC_FILES_FILE_PATHS
         end
 
         def lib_path
