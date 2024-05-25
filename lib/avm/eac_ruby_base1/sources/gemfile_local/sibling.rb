@@ -29,7 +29,7 @@ module Avm
 
           # @return [String]
           def condition_content
-            "::File.directory?('#{gemspec_relative_path}')"
+            "::File.file?(::File.expand_path('#{gemspec_relative_path}', __dir__))"
           end
 
           # @return [String]
