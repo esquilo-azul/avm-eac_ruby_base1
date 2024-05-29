@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/source_generators/base'
+require 'avm/eac_ruby_base1/rubygems/remote'
 require 'eac_ruby_utils/core_ext'
 
 module Avm
@@ -19,7 +20,7 @@ module Avm
 
           # @return [Gem::Version]
           def version
-            options_version || loaded_version
+            options_version || loaded_version || maximum_version
           end
 
           def two_segments
@@ -31,6 +32,14 @@ module Avm
           end
 
           private
+
+          # @return [Gem::Version]
+          def maximum_version
+            r = ::Avm::EacRubyBase1::Rubygems::Remote.new(gem_name).maximum_number
+            return ::Gem::Version.new(r) if r.present?
+
+            raise "None version found for gem \"#{gem_name}\""
+          end
 
           def segments_uncached
             version.release.to_s.split('.').map(&:to_i)
