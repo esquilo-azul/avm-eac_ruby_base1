@@ -19,7 +19,7 @@ module Avm
 
           # @return [Gem::Version]
           def version
-            options_version || default_version
+            options_version || loaded_version
           end
 
           def two_segments
@@ -36,7 +36,8 @@ module Avm
             version.release.to_s.split('.').map(&:to_i)
           end
 
-          def default_version
+          # @return [Gem::Version]
+          def loaded_version
             ::Gem.loaded_specs[gem_name].version
           end
 
