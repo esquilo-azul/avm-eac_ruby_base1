@@ -10,14 +10,14 @@ module Avm
         enable_simple_cache
         common_constructor :name
 
-        # @return [String]
+        # @return [Gem::Version, nil]
         def maximum_number
-          numbers.max
+          numbers.max.if_present { |v| ::Gem::Version.new(v) }
         end
 
-        # @return [Array<String>]
+        # @return [Array<Gem::Version>]
         def numbers
-          versions.map { |v| v.fetch('number') }
+          versions.map { |v| ::Gem::Version.new(v.fetch('number')) }
         end
 
         protected
