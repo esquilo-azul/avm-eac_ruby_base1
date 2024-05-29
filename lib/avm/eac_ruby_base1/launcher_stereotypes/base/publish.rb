@@ -3,11 +3,10 @@
 require 'eac_ruby_utils/simple_cache'
 require 'rubygems'
 require 'eac_cli/speaker'
+require 'avm/eac_ruby_base1/rubygems/remote'
 require 'avm/launcher/publish/base'
 require 'avm/launcher/publish/check_result'
 require 'avm/eac_ruby_base1/launcher/gem'
-require 'eac_envs/http/request'
-require 'eac_envs/http/response'
 
 module Avm
   module EacRubyBase1
@@ -98,16 +97,17 @@ module Avm
           end
 
           # @return [Array]
-          def gem_versions_uncached
-            ::EacEnvs::Http::Request.new
-              .url("https://rubygems.org/api/v1/versions/#{gem_spec.name}.json")
-              .response.body_data_or_raise
-          rescue EacEnvs::Http::Response => e
-            e.status == 404 ? [] : raise(e)
+          def gem_versions
+            remote_gem.versions
           end
 
-          def gem_version_max_uncached
-            gem_versions.map { |v| ::Gem::Version.new(v['number']) }.max
+          def gem_version_max
+            remote_gem.maximum_number
+          end
+
+          # @return [Avm::EacRubyBase1::Rubygems::Remote]
+          def remote_gem_uncached
+            ::Avm::EacRubyBase1::Rubygems::Remote.new(gem_spec.name)
           end
 
           def push_gem
