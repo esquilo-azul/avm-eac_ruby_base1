@@ -36,9 +36,9 @@ module Avm
             version.release.to_s.split('.').map(&:to_i)
           end
 
-          # @return [Gem::Version]
+          # @return [Gem::Version, nil]
           def loaded_version
-            ::Gem.loaded_specs[gem_name].version
+            ::Gem.loaded_specs[gem_name].if_present(&:version)
           end
 
           def options_version
