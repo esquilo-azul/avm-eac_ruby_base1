@@ -9,16 +9,45 @@ module Avm
     module SourceGenerators
       class Base < ::Avm::SourceGenerators::Base
         module Dependencies
+          common_concern
+
+          COMMON_DEPENDENCY_GEMS = %w[eac_ruby_utils].freeze
+
+          module ClassMethods
+            # @return [Array<String>]
+            def common_dependency_gems
+              COMMON_DEPENDENCY_GEMS
+            end
+          end
+
+          # @return [String]
+          def common_dependencies
+            dependencies_section(:common_dependency_gems, '')
+          end
+
           def eac_ruby_gem_support_version
             dependency_version('eac_ruby_gem_support')
           end
 
-          def eac_ruby_utils_version
-            dependency_version('eac_ruby_utils')
-          end
-
           def dependency_version(gem_name)
             ::Avm::EacRubyBase1::SourceGenerators::Base::VersionBuilder.new(gem_name, options).to_s
+          end
+
+          protected
+
+          # @param gem_name [String]
+          # @param prefix [String]
+          # @return [String]
+          def dependency_line(gem_name, prefix)
+            "#{IDENT}s.add_#{prefix}dependency '#{gem_name}', #{dependency_version(gem_name)}\n"
+          end
+
+          # @param setting_key [Symbol]
+          # @param prefix [String]
+          # @return [String]
+          def dependencies_section(gems_method, prefix)
+            self.class.send(gems_method).sort.map { |gem_name| dependency_line(gem_name, prefix) }
+              .join.rstrip
           end
         end
       end
