@@ -12,11 +12,17 @@ module Avm
           common_concern
 
           COMMON_DEPENDENCY_GEMS = %w[eac_ruby_utils].freeze
+          DEVELOPMENT_DEPENDENCY_GEMS = %w[eac_ruby_gem_support].freeze
 
           module ClassMethods
             # @return [Array<String>]
             def common_dependency_gems
               COMMON_DEPENDENCY_GEMS
+            end
+
+            # @return [Array<String>]
+            def development_dependency_gems
+              DEVELOPMENT_DEPENDENCY_GEMS
             end
           end
 
@@ -25,12 +31,13 @@ module Avm
             dependencies_section(:common_dependency_gems, '')
           end
 
-          def eac_ruby_gem_support_version
-            dependency_version('eac_ruby_gem_support')
-          end
-
           def dependency_version(gem_name)
             ::Avm::EacRubyBase1::SourceGenerators::Base::VersionBuilder.new(gem_name, options).to_s
+          end
+
+          # @return [String]
+          def development_dependencies
+            dependencies_section(:development_dependency_gems, 'development_')
           end
 
           protected

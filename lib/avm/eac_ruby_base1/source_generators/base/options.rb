@@ -13,7 +13,6 @@ module Avm
           GEMFILE_LOCK_OPTION = :'gemfile-lock'
 
           OPTIONS = {
-            :'eac-ruby-gem-support-version' => 'Version for "eac_ruby_gem_support" gem.',
             GEMFILE_LOCK_OPTION => 'Run "bundle install" at the end'
           }.freeze
 
@@ -24,7 +23,7 @@ module Avm
 
             # @return [Hash<Symbol, String>]
             def dependency_version_options
-              common_dependency_gems.sort.to_h do |gem_name|
+              (common_dependency_gems + development_dependency_gems).sort.to_h do |gem_name|
                 ["#{gem_name}_version".dasherize.to_sym, "Version for \"#{gem_name}\" gem."]
               end
             end

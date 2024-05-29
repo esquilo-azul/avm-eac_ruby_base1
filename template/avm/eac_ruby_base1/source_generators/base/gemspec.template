@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
 
 %%COMMON_DEPENDENCIES%%
 
-  s.add_development_dependency 'eac_ruby_gem_support', %%EAC_RUBY_GEM_SUPPORT_VERSION%%
+%%DEVELOPMENT_DEPENDENCIES%%
 end
