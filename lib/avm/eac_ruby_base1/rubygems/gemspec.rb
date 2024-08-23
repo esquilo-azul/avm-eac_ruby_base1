@@ -43,7 +43,9 @@ module Avm
         # @param gem_name [String]
         # @return [Avm::EacRubyBase1::Bundler::Gemfile::Dependency]
         def create_dependency(gem_name)
-          ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency.new(self, gem_name)
+          ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency.new(
+            self, gem_name, ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency::TYPE_COMMON
+          )
         end
 
         # @return [Hash<String, Avm::EacRubyBase1::Bundler::Gemfile::Dependency>]
