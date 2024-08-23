@@ -18,9 +18,10 @@ module Avm
 
         common_constructor :lines
 
+        # @param gem_name [String]
         # @return [Avm::EacRubyBase1::Bundler::Gemfile::Dependency]
         def dependency(gem_name)
-          ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency.new(self, gem_name)
+          create_dependency(gem_name)
         end
 
         # @return [Array<Avm::EacRubyBase1::Bundler::Gemfile::Dependency>]
@@ -35,6 +36,14 @@ module Avm
 
         def to_text
           lines.map { |line| "#{line}\n" }.join
+        end
+
+        protected
+
+        # @param gem_name [String]
+        # @return [Avm::EacRubyBase1::Bundler::Gemfile::Dependency]
+        def create_dependency(gem_name)
+          ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency.new(self, gem_name)
         end
       end
     end
