@@ -9,7 +9,8 @@ module Avm
         require_sub __FILE__, require_dependency: true
         enable_simple_cache
 
-        DEPENDENCY_LINE_PARSER = /s\.add_dependency\s*'(\S+)'/.to_parser { |m| m[1] }
+        DEPENDENCY_LINE_PARSER = /s\.add([a-zA-Z0-9_]*)_dependency\s*'(\S+)'/
+                                   .to_parser { |m| [m[2], m[1]] }
 
         class << self
           def from_file(path)
@@ -41,11 +42,10 @@ module Avm
         protected
 
         # @param gem_name [String]
+        # @param type [String] Avm::EacRubyBase1::Rubygems::Gemspec::Dependency::TYPE_*
         # @return [Avm::EacRubyBase1::Bundler::Gemfile::Dependency]
-        def create_dependency(gem_name)
-          ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency.new(
-            self, gem_name, ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency::TYPE_COMMON
-          )
+        def create_dependency(gem_name, type)
+          ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency.new(self, gem_name, type)
         end
 
         # @return [Hash<String, Avm::EacRubyBase1::Bundler::Gemfile::Dependency>]
