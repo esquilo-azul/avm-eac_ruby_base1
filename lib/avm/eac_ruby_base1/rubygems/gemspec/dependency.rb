@@ -7,6 +7,10 @@ module Avm
     module Rubygems
       class Gemspec
         class Dependency
+          enable_listable
+          lists.add_string :type, '' => :common, '_development' => :development,
+                                  '_runtime' => :runtime
+
           common_constructor :gemspec, :gem_name
 
           def version_specs=(version_specs)
