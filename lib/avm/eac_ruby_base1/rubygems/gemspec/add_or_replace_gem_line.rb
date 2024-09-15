@@ -8,7 +8,10 @@ module Avm
       class Gemspec
         class AddOrReplaceGemLine
           enable_method_class
-          common_constructor :sender, :gem_name, :gem_specs
+          common_constructor :sender, :gem_name, :gem_specs, :dependency_type do
+            self.dependency_type = ::Avm::EacRubyBase1::Rubygems::Gemspec::Dependency.lists.type
+                                     .value_validate!(dependency_type)
+          end
           delegate :lines, to: :sender
 
           DEPENDENCY_PREFIX = '  s.add_dependency'

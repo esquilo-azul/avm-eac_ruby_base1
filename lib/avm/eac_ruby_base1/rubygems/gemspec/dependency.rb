@@ -16,7 +16,7 @@ module Avm
           end
 
           def version_specs=(version_specs)
-            gemspec.add_or_replace_gem_line(gem_name, version_specs)
+            gemspec.add_or_replace_gem_line(gem_name, version_specs, type)
           end
         end
       end
