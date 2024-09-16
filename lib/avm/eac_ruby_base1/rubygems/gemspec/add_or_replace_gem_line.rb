@@ -14,7 +14,7 @@ module Avm
           end
           delegate :lines, to: :sender
 
-          DEPENDENCY_PREFIX = '  s.add_dependency'
+          DEPENDENCY_PREFIX = '  s.add%<dependency_type>s_dependency \'%<gem_name>s\''
 
           # @return [Integer]
           def existing_gem_line_index
@@ -52,8 +52,9 @@ module Avm
             ([gem_line_prefix] + quoted_gem_specs).join(', ')
           end
 
+          # @return [String]
           def gem_line_prefix
-            "#{DEPENDENCY_PREFIX} '#{gem_name}'"
+            format(DEPENDENCY_PREFIX, { dependency_type: dependency_type, gem_name: gem_name })
           end
 
           def replace_line
