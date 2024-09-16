@@ -39,8 +39,9 @@ module Avm
             lines.count
           end
 
+          # @return [Integer]
           def gems_lines_start_index
-            lines.index { |line| line.start_with?(DEPENDENCY_PREFIX) } || lines.count
+            existing_gem_line_index || (lines.count - 1)
           end
 
           def new_gem_line
