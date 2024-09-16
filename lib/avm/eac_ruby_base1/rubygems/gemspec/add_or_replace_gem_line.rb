@@ -16,8 +16,12 @@ module Avm
 
           DEPENDENCY_PREFIX = '  s.add_dependency'
 
+          # @return [Integer]
           def existing_gem_line_index
-            lines.index { |line| line.start_with?(gem_line_prefix) }
+            lines.index do |line|
+              ::Avm::EacRubyBase1::Rubygems::Gemspec::DEPENDENCY_LINE_PARSER.parse(line)
+                .if_present(&:first) == gem_name
+            end
           end
 
           def result
