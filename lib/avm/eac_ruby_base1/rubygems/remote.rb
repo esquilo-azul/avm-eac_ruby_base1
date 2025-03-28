@@ -5,7 +5,9 @@ module Avm
     module Rubygems
       class Remote
         enable_simple_cache
-        common_constructor :name
+        common_constructor :name, :provider, default: [nil] do
+          self.provider ||= ::Avm::EacRubyBase1::Rubygems::Providers::RubygemsOrg.new
+        end
 
         # @return [Gem::Version, nil]
         def maximum_number
@@ -19,13 +21,9 @@ module Avm
 
         protected
 
-        # @return [Array<Hash>]
+        # @return [Array<String>]
         def versions_uncached
-          ::EacEnvs::Http::Request.new
-            .url("https://rubygems.org/api/v1/versions/#{name}.json")
-            .response.body_data_or_raise
-        rescue EacEnvs::Http::Response => e
-          e.status == 404 ? [] : raise(e)
+          provider.gem_versions(name)
         end
       end
     end
