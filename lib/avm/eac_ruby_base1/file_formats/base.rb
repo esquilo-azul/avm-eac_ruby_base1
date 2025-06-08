@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_generic_base0/file_formats/base'
 require 'avm/eac_ruby_base1/rubocop'
 
 module Avm

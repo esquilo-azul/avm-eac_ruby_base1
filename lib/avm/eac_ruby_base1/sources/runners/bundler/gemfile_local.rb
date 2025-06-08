@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'avm/eac_ruby_base1/sources/gemfile_local'
-require 'eac_cli/core_ext'
 
 module Avm
   module EacRubyBase1

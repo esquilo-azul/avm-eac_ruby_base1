@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/core_ext'
-require 'avm/eac_ruby_base1/sources/namespace_replacer'
-
 module Avm
   module EacRubyBase1
     module Runners

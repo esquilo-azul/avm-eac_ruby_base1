@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/object'
-
 module Avm
   module EacRubyBase1
     module Launcher

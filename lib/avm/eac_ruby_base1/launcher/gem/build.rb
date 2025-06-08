@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require 'tmpdir'
-require 'eac_cli/speaker'
-require 'eac_ruby_utils/envs'
-require 'avm/launcher/paths/real'
-require 'avm/eac_ruby_base1/launcher/gem/specification'
-
 module Avm
   module EacRubyBase1
     module Launcher

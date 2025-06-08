@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'avm/eac_ruby_base1/rspec/source_generator'
-require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacRubyBase1

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/runners/base'
-
 module Avm
   module EacRubyBase1
     module Runners

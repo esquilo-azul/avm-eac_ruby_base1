@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
-require 'avm/eac_ruby_base1/bundler/incompatible_parser/gem_conflict'
-require 'avm/eac_ruby_base1/bundler/incompatible_parser/line_factory'
-
 module Avm
   module EacRubyBase1
     module Bundler

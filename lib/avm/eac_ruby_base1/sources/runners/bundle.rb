@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_cli/core_ext'
-require 'shellwords'
-
 module Avm
   module EacRubyBase1
     module Sources

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_generic_base0/sources/base'
-require 'avm/sources/update_error'
-require 'eac_ruby_utils/core_ext'
-
 module Avm
   module EacRubyBase1
     module Sources

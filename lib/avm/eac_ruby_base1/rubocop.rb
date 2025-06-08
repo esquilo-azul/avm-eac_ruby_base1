@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
-require 'eac_ruby_utils/ruby/on_clean_environment'
-
 module Avm
   module EacRubyBase1
     class Rubocop

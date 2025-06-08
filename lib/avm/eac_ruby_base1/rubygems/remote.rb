@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
-require 'eac_envs/http/request'
-
 module Avm
   module EacRubyBase1
     module Rubygems

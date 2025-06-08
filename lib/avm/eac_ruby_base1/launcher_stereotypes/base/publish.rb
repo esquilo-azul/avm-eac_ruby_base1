@@ -1,13 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/simple_cache'
-require 'rubygems'
-require 'eac_cli/speaker'
-require 'avm/eac_ruby_base1/rubygems/remote'
-require 'avm/launcher/publish/base'
-require 'avm/launcher/publish/check_result'
-require 'avm/eac_ruby_base1/launcher/gem'
-
 module Avm
   module EacRubyBase1
     module LauncherStereotypes

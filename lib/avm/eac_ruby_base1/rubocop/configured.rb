@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/sources/configuration'
-
 module Avm
   module EacRubyBase1
     class Rubocop

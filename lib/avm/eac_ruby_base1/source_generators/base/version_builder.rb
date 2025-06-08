@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/source_generators/base'
-require 'avm/eac_ruby_base1/rubygems/remote'
-require 'eac_ruby_utils/core_ext'
-
 module Avm
   module EacRubyBase1
     module SourceGenerators

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/sources/tests/minitest'
-require 'avm/eac_ruby_base1/sources/tests/rspec'
-require 'eac_ruby_utils/core_ext'
-
 module Avm
   module EacRubyBase1
     module Sources

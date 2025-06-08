@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 require 'avm/eac_generic_base0/sources/base'
-require 'avm/eac_ruby_base1/rubygems/version_file'
 require 'avm/eac_ruby_base1/sources/runners'
-require 'avm/version_number'
-require 'eac_ruby_utils/core_ext'
 
 module Avm
   module EacRubyBase1

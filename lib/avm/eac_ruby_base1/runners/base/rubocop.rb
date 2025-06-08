@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/rubocop'
-require 'eac_cli/core_ext'
-
 module Avm
   module EacRubyBase1
     module Runners

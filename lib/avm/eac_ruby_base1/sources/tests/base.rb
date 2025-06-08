@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils/core_ext'
-require 'eac_fs/logs'
-require 'eac_ruby_utils/listable'
-
 module Avm
   module EacRubyBase1
     module Sources
