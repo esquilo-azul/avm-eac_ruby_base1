@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/rubygems/gemspec'
-
 RSpec.describe Avm::EacRubyBase1::Rubygems::Gemspec do
   let(:gemspec_path) { fixtures_directory.join('the_gem.gemspec') }
 

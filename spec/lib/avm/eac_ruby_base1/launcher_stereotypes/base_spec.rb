@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/launcher_stereotypes/base'
-
 RSpec.describe Avm::EacRubyBase1::LauncherStereotypes::Base do
   describe '#load_gemspec' do
     let(:dummy_dir) { avm_eac_ruby_base1_source(target_path: temp_dir.join(gemname)).path }

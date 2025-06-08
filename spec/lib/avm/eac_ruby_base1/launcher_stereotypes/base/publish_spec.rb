@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/launcher/context'
-require 'avm/launcher/instances/base'
-require 'avm/eac_ruby_base1/launcher_stereotypes/base/publish'
-
 RSpec.describe Avm::EacRubyBase1::LauncherStereotypes::Base::Publish do
   let(:context) { temp_launcher_context }
   let(:application_id) { 'ruby_gem_stub' }

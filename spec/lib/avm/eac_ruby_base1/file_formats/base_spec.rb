@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/file_formats/base'
-
 RSpec.describe Avm::EacRubyBase1::FileFormats::Base do
   include_examples 'avm_file_formats_with_fixtures', __FILE__
   include_examples 'avm_file_format_file_resource_name', {

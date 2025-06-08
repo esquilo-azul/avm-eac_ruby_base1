@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/rubygems/version_file'
-
 RSpec.describe Avm::EacRubyBase1::Rubygems::VersionFile do
   include_context 'spec_paths', __FILE__
 

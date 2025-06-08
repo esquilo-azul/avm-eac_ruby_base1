@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/launcher/gem/specification'
-
 RSpec.describe Avm::EacRubyBase1::Launcher::Gem::Specification do
   let(:source_version) { '1.0.0.pre.stub' }
   let(:source) do

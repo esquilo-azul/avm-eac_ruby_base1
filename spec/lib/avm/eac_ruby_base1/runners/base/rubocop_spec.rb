@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/runners/base/rubocop'
-require 'avm/eac_ruby_base1/sources/base'
-
 RSpec.describe Avm::EacRubyBase1::Runners::Base::Rubocop do
   let(:fixtures_root) { Pathname.new(__dir__).expand_path.join('rubocop_spec_files') }
   let(:dir1) { fixtures_root.join('dir1') } # rubocop:disable RSpec/IndexedLet

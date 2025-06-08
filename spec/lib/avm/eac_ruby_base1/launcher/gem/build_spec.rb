@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/object'
-require 'avm/eac_ruby_base1/launcher/gem/build'
-
 RSpec.describe Avm::EacRubyBase1::Launcher::Gem::Build do
   describe '#output_file' do
     let(:gem_dir) do
