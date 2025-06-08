@@ -49,30 +49,6 @@ module Avm
           name.split('-').join('/')
         end
 
-        def root_module
-          lib_path.camelize
-        end
-
-        def root_module_close
-          root_module_components.count.times.map do |index|
-            "#{IDENT * index}end"
-          end.reverse.join("\n")
-        end
-
-        def root_module_inner_identation
-          IDENT * root_module_components.count
-        end
-
-        def root_module_open
-          root_module_components.each_with_index.map do |component, index|
-            "#{IDENT * index}module #{component}"
-          end.join("\n")
-        end
-
-        def root_module_components
-          root_module.split('::')
-        end
-
         protected
 
         def generate_gemspec
