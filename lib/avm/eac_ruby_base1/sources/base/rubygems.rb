@@ -33,6 +33,11 @@ module Avm
           def gemspec_path
             path.glob("*#{GEMSPEC_EXTNAME}").first
           end
+
+          # @return [Pathname]
+          def root_module_directory
+            path.join('lib', *gem_namespace_parts)
+          end
         end
       end
     end

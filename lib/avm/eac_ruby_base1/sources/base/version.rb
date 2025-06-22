@@ -19,8 +19,9 @@ module Avm
             ::Avm::EacRubyBase1::Rubygems::VersionFile.new(version_file_path)
           end
 
+          # @return [Pathname]
           def version_file_path
-            path.join('lib', *gem_namespace_parts, 'version.rb')
+            root_module_directory.join('version.rb')
           end
         end
       end
