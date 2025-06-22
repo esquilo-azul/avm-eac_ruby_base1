@@ -38,6 +38,11 @@ module Avm
           def root_module_directory
             path.join('lib', *gem_namespace_parts)
           end
+
+          # @return [Pathname]
+          def root_module_file
+            root_module_directory.dirname.join("#{root_module_directory.basename}.rb")
+          end
         end
       end
     end
