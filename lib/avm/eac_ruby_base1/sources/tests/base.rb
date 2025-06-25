@@ -43,7 +43,7 @@ module Avm
           gem.bundle('exec', *bundle_exec_args).chdir_root.execute
         end
 
-        def exec_run_with_log
+        def exec_run_with_log # rubocop:disable Naming/PredicateMethod
           r = exec_run
           logs[:stdout].write(r[:stdout])
           logs[:stderr].write(r[:stderr])

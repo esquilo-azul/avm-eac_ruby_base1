@@ -11,7 +11,7 @@ module Avm
       # @return [Avm::VersionNumber]
       def prefix_version
         ::Avm::VersionNumber.new(
-          normalized_version.segments[0..normalized_version.segments.count - 2]
+          normalized_version.segments[0..(normalized_version.segments.count - 2)]
         )
       end
 
