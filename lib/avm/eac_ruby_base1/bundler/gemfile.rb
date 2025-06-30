@@ -4,7 +4,7 @@ module Avm
   module EacRubyBase1
     module Bundler
       class Gemfile
-        require_sub __FILE__, require_dependency: true
+        require_sub __FILE__, require_mode: :kernel
 
         class << self
           def from_file(path)

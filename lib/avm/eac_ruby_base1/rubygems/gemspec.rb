@@ -4,7 +4,7 @@ module Avm
   module EacRubyBase1
     module Rubygems
       class Gemspec
-        require_sub __FILE__, require_dependency: true
+        require_sub __FILE__, require_mode: :kernel
         enable_simple_cache
 
         DEPENDENCY_LINE_PARSER = /s\.add([a-zA-Z0-9_]*)_dependency\s*'(\S+)'/
