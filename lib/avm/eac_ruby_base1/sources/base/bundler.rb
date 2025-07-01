@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/sources/bundle_update'
-
 module Avm
   module EacRubyBase1
     module Sources

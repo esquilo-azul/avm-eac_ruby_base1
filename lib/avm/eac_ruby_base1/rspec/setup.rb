@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/rspec/source_generator'
-
 module Avm
   module EacRubyBase1
     module Rspec

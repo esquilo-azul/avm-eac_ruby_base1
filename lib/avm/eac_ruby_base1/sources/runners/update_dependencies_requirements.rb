@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'avm/eac_ruby_base1/rubygems'
-require 'avm/eac_ruby_base1/sources/update_dependency_requirements'
-
 module Avm
   module EacRubyBase1
     module Sources
