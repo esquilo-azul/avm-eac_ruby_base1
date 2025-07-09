@@ -17,32 +17,6 @@ module Avm
             gem_build.close
           end
 
-          def gem_published?
-            gem_versions.any?
-          end
-
-          def version_published?
-            gem_versions.any? { |v| v['number'] == gem_spec.version }
-          end
-
-          def outdated_version?
-            gem_version_max.present? && ::Gem::Version.new(gem_spec.version) < gem_version_max
-          end
-
-          # @return [Array]
-          def gem_versions
-            remote_gem.versions
-          end
-
-          def gem_version_max
-            remote_gem.maximum_number
-          end
-
-          # @return [Avm::EacRubyBase1::Rubygems::Remote]
-          def remote_gem_uncached
-            ::Avm::EacRubyBase1::Rubygems::Remote.new(gem_spec.name)
-          end
-
           def push_gem
             info("Pushing gem #{gem_spec}...")
             command = ['gem', 'push', gem_build.output_file]
