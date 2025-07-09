@@ -10,18 +10,6 @@ module Avm
 
           private
 
-          def source_uncached
-            instance.warped
-          end
-
-          def gem_spec_uncached
-            ::Avm::EacRubyBase1::LauncherStereotypes::Base.load_gemspec(gemspec)
-          end
-
-          def gem_build_uncached
-            ::Avm::EacRubyBase1::Launcher::Gem::Build.new(source)
-          end
-
           def publish
             gem_build.build
             push_gem
@@ -65,11 +53,7 @@ module Avm
             info('Pushed!')
           end
 
-          def gemspec_uncached
-            source.find_file_with_extension('.gemspec')
-          end
-
-          require_sub __FILE__, require_mode: :kernel
+          require_sub __FILE__, include_modules: true, require_mode: :kernel
         end
       end
     end
