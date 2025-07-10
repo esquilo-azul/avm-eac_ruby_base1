@@ -6,6 +6,10 @@ module Avm
       class Base
         class Publish < ::Avm::Launcher::Publish::Base
           module RemoteGem
+            def gem_provider
+              instance.source.gem_provider
+            end
+
             def gem_published?
               gem_versions.any?
             end
@@ -31,7 +35,7 @@ module Avm
 
             # @return [Avm::EacRubyBase1::Rubygems::Remote]
             def remote_gem_uncached
-              ::Avm::EacRubyBase1::Rubygems::Remote.new(gem_spec.name)
+              ::Avm::EacRubyBase1::Rubygems::Remote.new(gem_spec.name, gem_provider)
             end
           end
         end
