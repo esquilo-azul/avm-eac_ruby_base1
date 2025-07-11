@@ -19,11 +19,7 @@ module Avm
 
           def push_gem
             info("Pushing gem #{gem_spec}...")
-            command = ['gem', 'push', gem_build.output_file]
-            unless ::Avm::Launcher::Context.current.publish_options[:confirm]
-              command = %w[echo] + command + %w[(Dry-run)]
-            end
-            EacRubyUtils::Envs.local.command(command).system
+            gem_provider.push_gem(gem_build.output_file)
             info('Pushed!')
           end
 

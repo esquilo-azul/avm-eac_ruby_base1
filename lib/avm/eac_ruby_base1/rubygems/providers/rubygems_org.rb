@@ -22,6 +22,17 @@ module Avm
           rescue EacEnvs::Http::Response => e
             e.status == 404 ? [] : raise(e)
           end
+
+          # @param gem_package_path [Pathname]
+          def push_gem(gem_package_path)
+            info("Pushing gem #{gem_package_path}...")
+            command = ['gem', 'push', gem_package_path]
+            unless ::Avm::Launcher::Context.current.publish_options[:confirm]
+              command = %w[echo] + command + %w[(Dry-run)]
+            end
+            EacRubyUtils::Envs.local.command(command).system
+            info('Pushed!')
+          end
         end
       end
     end
