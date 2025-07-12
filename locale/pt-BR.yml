@@ -4,10 +4,10 @@ pt-BR:
       launcher_stereotypes:
         base:
           publish:
-            new_gem_disallowed_check_result: "%{gem} não existe em RubyGems"
+            new_gem_disallowed_check_result: "%{gem} não existe em %{provider}"
             outdated_version_check_result: "%{gem} está desatualizada (Máx.: %{max_version})"
             version_published_check_result: "%{gem} já enviada"
-            version_unpublished_check_result: "%{gem} não encontrada em RubyGems."
+            version_unpublished_check_result: "%{gem} não encontrada em %{provider}."
       sources:
         base:
           update_self_commit_message: 'Todas as gems: atualiza.'

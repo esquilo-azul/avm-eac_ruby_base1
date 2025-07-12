@@ -9,8 +9,8 @@ module Avm
             acts_as_instance_method
 
             common_constructor :publish
-            delegate :gem_published?, :gem_spec, :gem_version_max, :outdated_version?,
-                     :version_published?, to: :publish
+            delegate :gem_provider, :gem_published?, :gem_spec, :gem_version_max,
+                     :outdated_version?, :version_published?, to: :publish
 
             def result
               gem_published? ? internal_check_gem_published : internal_check_gem_unpublished
@@ -40,7 +40,7 @@ module Avm
 
             def new_gem_disallowed_check_result
               ::Avm::Launcher::Publish::CheckResult.blocked(
-                publish.i18n_translate(__method__, gem: gem_spec.full_name)
+                publish.i18n_translate(__method__, gem: gem_spec.full_name, provider: gem_provider)
               )
             end
 
@@ -59,7 +59,7 @@ module Avm
 
             def version_unpublished_check_result
               ::Avm::Launcher::Publish::CheckResult.pending(
-                publish.i18n_translate(__method__, gem: gem_spec.full_name)
+                publish.i18n_translate(__method__, gem: gem_spec.full_name, provider: gem_provider)
               )
             end
           end
