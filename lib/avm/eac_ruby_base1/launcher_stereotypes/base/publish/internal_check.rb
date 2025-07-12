@@ -40,23 +40,27 @@ module Avm
 
             def new_gem_disallowed_check_result
               ::Avm::Launcher::Publish::CheckResult.blocked(
-                "#{gem_spec.full_name} does not exist in RubyGems"
+                publish.i18n_translate(__method__, gem: gem_spec.full_name)
               )
             end
 
             def version_published_check_result
-              ::Avm::Launcher::Publish::CheckResult.updated("#{gem_spec.full_name} already pushed")
+              ::Avm::Launcher::Publish::CheckResult.updated(
+                publish.i18n_translate(__method__, gem: gem_spec.full_name)
+              )
             end
 
             def outdated_version_check_result
               ::Avm::Launcher::Publish::CheckResult.outdated(
-                "#{gem_spec.full_name} is outdated (Max: #{gem_version_max})"
+                publish.i18n_translate(__method__, gem: gem_spec.full_name,
+                                                   max_version: gem_version_max)
               )
             end
 
             def version_unpublished_check_result
-              ::Avm::Launcher::Publish::CheckResult.pending("#{gem_spec.full_name} not found " \
-                                                            'in RubyGems')
+              ::Avm::Launcher::Publish::CheckResult.pending(
+                publish.i18n_translate(__method__, gem: gem_spec.full_name)
+              )
             end
           end
         end
