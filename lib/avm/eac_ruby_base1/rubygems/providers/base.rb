@@ -34,6 +34,11 @@ module Avm
           def push_gem_command_args(gem_package_path)
             raise_abstract __method__, gem_package_path
           end
+
+          # @return [String]
+          def to_s
+            "#{self.class.name.demodulize}[#{root_http_url}]"
+          end
         end
       end
     end
