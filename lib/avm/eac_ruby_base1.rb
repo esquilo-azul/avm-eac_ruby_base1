@@ -8,6 +8,7 @@ module Avm
   end
 end
 
+require 'aranha/parsers'
 require 'avm'
 require 'avm/eac_generic_base0'
 require 'eac_templates'
