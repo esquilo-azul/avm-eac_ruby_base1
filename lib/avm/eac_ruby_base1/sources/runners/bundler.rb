@@ -5,7 +5,6 @@ module Avm
     module Sources
       module Runners
         class Bundler
-          require_sub __FILE__
           runner_with :help, :subcommands do
             desc 'Ruby\'s bundler utitilies for local projects.'
             subcommands

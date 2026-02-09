@@ -5,7 +5,6 @@ module Avm
     module Sources
       module Tests
         class Multiple
-          require_sub __FILE__
           enable_speaker
           enable_simple_cache
           common_constructor :gems, :options, default: [{}]

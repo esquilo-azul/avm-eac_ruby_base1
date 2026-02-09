@@ -59,8 +59,6 @@ module Avm
             end
           end
         end
-
-        require_sub __FILE__
       end
     end
   end

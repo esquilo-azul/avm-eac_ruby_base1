@@ -4,7 +4,6 @@ module Avm
   module EacRubyBase1
     module LauncherStereotypes
       class Base
-        require_sub __FILE__
         include ::Avm::Launcher::Stereotype
 
         STEREOTYPE_NAME = 'EacRubyBase1'

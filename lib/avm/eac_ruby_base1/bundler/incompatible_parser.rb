@@ -4,8 +4,6 @@ module Avm
   module EacRubyBase1
     module Bundler
       class IncompatibleParser
-        require_sub __FILE__
-
         enable_simple_cache
         attr_reader :gems_in_conflict
 
