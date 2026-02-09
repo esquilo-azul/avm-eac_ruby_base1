@@ -2,4 +2,4 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift("#{__dir__}/../lib")
-puts 'My Runner'
+puts 'My Runner' # rubocop:disable RSpec/Output
