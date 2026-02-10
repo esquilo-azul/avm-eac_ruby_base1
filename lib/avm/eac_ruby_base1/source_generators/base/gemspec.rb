@@ -36,6 +36,18 @@ module Avm
             GEMSPEC_FILES_FILE_PATHS
           end
 
+          # @return [Avm::VersionNumber]
+          def minimum_ruby_version
+            ::Avm::VersionNumber.new(
+              ::Avm::EacRubyBase1::Instances::Mixin.default_ruby_version.segments[0..1]
+            )
+          end
+
+          # @return [String]
+          def require_ruby_version
+            ">= #{minimum_ruby_version}"
+          end
+
           protected
 
           def generate_gemspec
