@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Put here the authors']
   s.summary     = 'Put here de description.'
 
-  s.add_dependency 'aranha-parsers', '~> 0.26', '>= 0.26.1'
+  s.add_dependency 'aranha-parsers', '~> 0.26', '>= 0.26.2'
 
   s.files = Dir['{lib,locale,template}/**/*']
   s.required_ruby_version = '>= 2.7'
