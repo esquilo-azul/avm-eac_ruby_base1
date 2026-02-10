@@ -10,7 +10,7 @@ en:
             version_unpublished_check_result: "%{gem} not found in %{provider}"
       sources:
         base:
-          update_self_commit_message: 'All gems: update.'
+          update_self_commit_message: '%{gemfile_lock_path}: "bundle update".'
           update_version_no_scm_message: "Gem \"%{application_id}\" (Local): update to '%{version}'."
         update_dependency_requirements:
           commit_message: "Gem \"%{name}\": update to '%{requirements_list}'."

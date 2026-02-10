@@ -9,6 +9,14 @@ module Avm
             update_self_content
           end
 
+          # @return [String]
+          def update_self_commit_message
+            i18n_translate(
+              __method__,
+              gemfile_lock_path: gemfile_lock_path.relative_path_from(path)
+            )
+          end
+
           def update_self_content
             bundle_update.execute!
           rescue ::EacRubyUtils::Envs::ExecutionError

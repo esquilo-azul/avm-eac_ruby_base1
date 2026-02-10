@@ -10,7 +10,7 @@ pt-BR:
             version_unpublished_check_result: "%{gem} não encontrada em %{provider}."
       sources:
         base:
-          update_self_commit_message: 'Todas as gems: atualiza.'
+          update_self_commit_message: '%{gemfile_lock_path}: "bundle update".'
           update_version_no_scm_message: "Gem \"%{application_id}\" (Local): atualiza para '%{version}'."
         update_dependency_requirements:
           commit_message: "Gem \"%{name}\": atualiza para '%{requirements_list}'."
