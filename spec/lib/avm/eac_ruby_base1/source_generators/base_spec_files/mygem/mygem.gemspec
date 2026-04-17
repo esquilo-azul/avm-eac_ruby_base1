@@ -10,7 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Put here the authors']
   s.summary     = 'Put here de description.'
 
-  s.files = Dir['{lib}/**/*']
+  s.files = Dir.glob('{lib}/**/*', File::FNM_DOTMATCH)
+              .reject { |f| ['.', '..'].include?(File.basename(f)) }
   s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'eac_ruby_utils', '~> 0.35'

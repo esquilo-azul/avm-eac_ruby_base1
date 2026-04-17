@@ -5,6 +5,9 @@ module Avm
     module SourceGenerators
       class Base < ::Avm::SourceGenerators::Base
         module Gemspec
+          GEMSPEC_TAB = '  '
+          GEMSPEC_NEWLINE_TAB = "\n#{GEMSPEC_TAB * 6}"
+
           # @return [String]
           def gemspec_extra
             gemspec_extra_lines.map { |line| "\n#{IDENT}#{line}" }.join
@@ -17,13 +20,10 @@ module Avm
 
           # @return [String]
           def gemspec_files_value
-            "Dir[#{gemspec_files_paths.map { |path| "'#{path}'" }.join(', ')}]"
-          end
-
-          # @return [Array<String>]
-          def gemspec_files_paths
-            ["{#{gemspec_files_directory_paths.sort.join(',')}}/**/*"] +
-              gemspec_files_file_paths.sort
+            (
+              gemspec_files_directory_paths_to_string_array +
+                gemspec_files_file_paths_to_string_array
+            ).join(" +#{GEMSPEC_NEWLINE_TAB}")
           end
 
           # @return [Array<String>]
@@ -49,6 +49,27 @@ module Avm
           end
 
           protected
+
+          # @return [Enumerable<String>]
+          def gemspec_files_directory_paths_to_string_array
+            gemspec_files_directory_paths.then do |v|
+              next [] unless v.any?
+
+              ["Dir.glob('{#{v.sort.join(',')}}/**/*', File::FNM_DOTMATCH)" \
+               "#{GEMSPEC_NEWLINE_TAB}#{GEMSPEC_TAB}" \
+               ".reject { |f| ['.', '..'].include?(File.basename(f)) }"]
+            end
+          end
+
+          # @return [Enumerable<String>]
+          def gemspec_files_file_paths_to_string_array
+            gemspec_files_file_paths.then do |y|
+              next [] unless y.any?
+
+              r = y.sort.map { |e| "'#{e}'" }.join(', ')
+              ["[#{r}]"]
+            end
+          end
 
           def generate_gemspec
             template_apply('gemspec', "#{name}.gemspec")
