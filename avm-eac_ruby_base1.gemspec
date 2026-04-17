@@ -12,7 +12,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'aranha-parsers', '~> 0.27'
 
-  s.files = Dir['{lib,locale,template}/**/*']
+  s.files = Dir.glob('{lib,locale,template}/**/*', File::FNM_DOTMATCH)
+              .reject { |f| ['.', '..'].include?(File.basename(f)) }
   s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'avm', '~> 0.99', '>= 0.98.5'
