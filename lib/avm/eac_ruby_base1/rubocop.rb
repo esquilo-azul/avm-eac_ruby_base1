@@ -36,6 +36,8 @@ module Avm
 
       def rubocop_version_uncached
         ::EacRubyUtils::Ruby.on_clean_environment do
+          rubocop_command.append(['--ignore-parent-exclusion', '--version']).execute!.strip
+        rescue EacRubyUtils::Envs::ExecutionError
           rubocop_command.append(['--version']).execute!.strip
         end
       end
