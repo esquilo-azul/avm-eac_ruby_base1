@@ -9,6 +9,12 @@ module Avm
             lib_path.camelize
           end
 
+          # @return [String]
+          def root_module_after_close
+            s = root_module_requires.map { |e| "require '#{e}'\n" }.join
+            s.present? ? "\n#{s}" : ''
+          end
+
           def root_module_close
             root_module_components.count.times.map do |index|
               "#{IDENT * index}end"
@@ -27,6 +33,11 @@ module Avm
 
           def root_module_components
             root_module.split('::')
+          end
+
+          # @return [Enumerable<String>]
+          def root_module_requires
+            []
           end
         end
       end

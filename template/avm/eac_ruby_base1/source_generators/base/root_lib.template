@@ -5,3 +5,4 @@ EacRubyUtils::RootModuleSetup.perform __FILE__
 
 %%ROOT_MODULE_OPEN%%
 %%ROOT_MODULE_CLOSE%%
+%%ROOT_MODULE_AFTER_CLOSE%%
