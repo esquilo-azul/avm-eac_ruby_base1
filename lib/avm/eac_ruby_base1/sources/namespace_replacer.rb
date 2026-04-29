@@ -44,7 +44,6 @@ module Avm
           s = ''
           parts.each_with_index do |_part, index|
             tabc = (parts.count - 1 - index)
-            tabc -= 1 if index.zero?
             s += "#{'  ' * tabc}end\n"
           end
           s
