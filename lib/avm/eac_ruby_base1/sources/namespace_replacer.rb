@@ -4,6 +4,8 @@ module Avm
   module EacRubyBase1
     module Sources
       class NamespaceReplacer
+        TAB = '  '
+
         common_constructor :from, :to
 
         def concat_regex(regexes)
@@ -31,22 +33,32 @@ module Avm
           "\n\n#{to_open}\\1#{to_close}"
         end
 
+        # @return [String]
         def to_open
           s = ''
           to.split('::').each_with_index do |part, index|
-            s += ('  ' * index) + "module #{part}\n"
+            s += tab(index) + "module #{part}\n"
           end
           s
         end
 
+        # @return [String]
         def to_close
           parts = to.split('::')
           s = ''
           parts.each_with_index do |_part, index|
             tabc = (parts.count - 1 - index)
-            s += "#{'  ' * tabc}end\n"
+            s += "#{tab(tabc)}end\n"
           end
           s
+        end
+
+        protected
+
+        # @param count [Integer]
+        # @return [String]
+        def tab(count)
+          TAB * count
         end
       end
     end
