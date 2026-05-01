@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir.glob('{lib,locale,template}/**/*', File::FNM_DOTMATCH)
               .reject { |f| ['.', '..'].include?(File.basename(f)) }
-  s.required_ruby_version = '>= 2.7'
+  s.required_ruby_version = '>= 3.2'
 
   s.add_dependency 'avm', '~> 0.100'
   s.add_dependency 'avm-eac_generic_base0', '~> 0.15', '>= 0.15.2'

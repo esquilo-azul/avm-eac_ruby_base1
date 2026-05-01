@@ -11,10 +11,10 @@ module Avm
           end
 
           # @return [Avm::EacRubyBase1::Sources::Base::BundleCommand]
-          def rake(*args)
+          def rake(*)
             raise "File \"#{rakefile_path}\" does not exist" unless rakefile_path.exist?
 
-            bundle('exec', 'rake', '--rakefile', rakefile_path, *args)
+            bundle('exec', 'rake', '--rakefile', rakefile_path, *)
           end
 
           # @return [Pathname]

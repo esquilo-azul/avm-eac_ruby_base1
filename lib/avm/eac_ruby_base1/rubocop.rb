@@ -18,8 +18,8 @@ module Avm
 
       private
 
-      def cmd(*args)
-        ::EacRubyUtils::Envs.local.command(*args)
+      def cmd(*)
+        ::EacRubyUtils::Envs.local.command(*)
       end
 
       def rubocop_command_uncached

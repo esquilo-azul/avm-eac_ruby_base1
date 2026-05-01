@@ -56,8 +56,8 @@ module Avm
               'Gemfile.lock'
             end
 
-            def bundle_run(*args)
-              instance.bundle(*args).system!
+            def bundle_run(*)
+              instance.bundle(*).system!
             end
 
             def conflict?

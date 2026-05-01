@@ -26,8 +26,8 @@ module Avm
             result_from_patterns(LIBRARY_PATTERNS) { |m| m[1].camelize }
           end
 
-          def result_from_patterns(patterns, &block)
-            file_format.result_from_patterns(patterns, path, &block)
+          def result_from_patterns(patterns, &)
+            file_format.result_from_patterns(patterns, path, &)
           end
 
           def result_from_spec

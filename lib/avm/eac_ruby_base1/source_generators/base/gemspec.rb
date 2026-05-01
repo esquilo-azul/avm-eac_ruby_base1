@@ -6,7 +6,7 @@ module Avm
       class Base < ::Avm::SourceGenerators::Base
         module Gemspec
           GEMSPEC_TAB = '  '
-          GEMSPEC_NEWLINE_TAB = "\n#{GEMSPEC_TAB * 6}"
+          GEMSPEC_NEWLINE_TAB = "\n#{GEMSPEC_TAB * 6}".freeze
 
           # @return [String]
           def gemspec_extra

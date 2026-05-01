@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name        = 'the_gem'
   s.version     = '0.0.0'
 
-  s.required_ruby_version = '>= 2.7'
+  s.required_ruby_version = '>= 3.2'
 
   s.add_dependency 'avm', '~> 1.0', '>= 1.0.5'
   s.add_dependency 'avm-eac_generic_base0', '1.0.0'
