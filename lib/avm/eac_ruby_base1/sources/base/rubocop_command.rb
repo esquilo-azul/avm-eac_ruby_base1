@@ -33,7 +33,7 @@ module Avm
 
           # @return [String]
           def autocorrect_all_option
-            '--auto-correct-all'
+            version < '1.30' ? '--auto-correct-all' : '--autocorrect-all'
           end
 
           # @return [String]
