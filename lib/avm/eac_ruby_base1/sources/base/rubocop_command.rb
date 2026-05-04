@@ -19,7 +19,7 @@ module Avm
 
           # @return [Gemspec::Version]
           def version
-            @version ||= ::Gemspec::Version.new(
+            @version ||= ::Gem::Version.new(
               source.bundle('exec', 'rubocop', '--version').execute!
             )
           end
