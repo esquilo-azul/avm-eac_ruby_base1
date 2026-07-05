@@ -6,21 +6,14 @@ module Avm
       class Base < ::Avm::EacGenericBase0::Sources::Base
         module Update
           def on_sub_updated
-            update_self_content
+            update_self
           end
 
-          # @return [String]
-          def update_self_commit_message
-            i18n_translate(
-              __method__,
-              gemfile_lock_path: gemfile_lock_path.relative_path_from(path)
-            )
-          end
-
-          def update_self_content
-            bundle_update.execute!
-          rescue ::EacRubyUtils::Envs::ExecutionError
-            raise ::Avm::Sources::UpdateError
+          # @param changes [Enumerable<Avm::Sources::Change>]
+          def update_self_changes_before_subs
+            super + [
+              ::Avm::EacRubyBase1::Sources::Update::Changes::BundleUpdate.new(self)
+            ]
           end
         end
       end
