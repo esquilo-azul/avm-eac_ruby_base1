@@ -15,5 +15,5 @@ en:
           changes:
             bundle_update:
               commit_message: '%{gemfile_lock_path}: "bundle update".'
-        update_dependency_requirements:
-          commit_message: "Gem \"%{name}\": update to '%{requirements_list}'."
+            update_requirements:
+              commit_message: 'Gemspec#dependencies[*]: update requirements.'

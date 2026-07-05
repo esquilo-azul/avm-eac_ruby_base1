@@ -5,8 +5,16 @@ module Avm
     module Sources
       class Base < ::Avm::EacGenericBase0::Sources::Base
         module Update
+          # @return [void]
           def on_sub_updated
-            update_self
+            update_self_changes_before_subs
+          end
+
+          # @param changes [Enumerable<Avm::Sources::Change>]
+          def update_self_changes_after_subs
+            super + [
+              ::Avm::EacRubyBase1::Sources::Update::Changes::UpdateRequirements.new(self)
+            ]
           end
 
           # @param changes [Enumerable<Avm::Sources::Change>]
