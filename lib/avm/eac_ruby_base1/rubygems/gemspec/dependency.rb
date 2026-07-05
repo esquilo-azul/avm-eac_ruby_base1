@@ -13,6 +13,11 @@ module Avm
             self.type = self.class.lists.type.value_validate!(type)
           end
 
+          # @return [String]
+          def to_s
+            "#{self.class}[#{gem_name}, #{type}]"
+          end
+
           def version_specs=(version_specs)
             gemspec.add_or_replace_gem_line(gem_name, version_specs, type)
           end
