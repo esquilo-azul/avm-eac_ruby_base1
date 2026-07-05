@@ -10,14 +10,14 @@ Gem::Specification.new do |s|
   s.authors     = ['Put here the authors']
   s.summary     = 'Put here de description.'
 
-  s.add_dependency 'aranha-parsers', '~> 0.27'
+  s.add_dependency 'aranha-parsers', '~> 0.29'
 
   s.files = Dir.glob('{lib,locale,template}/**/*', File::FNM_DOTMATCH)
               .reject { |f| ['.', '..'].include?(File.basename(f)) }
   s.required_ruby_version = '>= 3.2'
 
-  s.add_dependency 'avm', '~> 0.100'
-  s.add_dependency 'avm-eac_generic_base0', '~> 0.15', '>= 0.15.2'
+  s.add_dependency 'avm', '~> 0.101'
+  s.add_dependency 'avm-eac_generic_base0', '~> 0.15', '>= 0.15.3'
   s.add_dependency 'eac_envs-http', '~> 0.7', '>= 0.7.1'
   s.add_dependency 'eac_ruby_utils', '~> 0.131'
 
