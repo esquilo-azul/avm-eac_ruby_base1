@@ -16,10 +16,10 @@ Gem::Specification.new do |s|
               .reject { |f| ['.', '..'].include?(File.basename(f)) }
   s.required_ruby_version = '>= 3.2'
 
-  s.add_dependency 'avm', '~> 0.101'
+  s.add_dependency 'avm', '~> 0.102', '>= 0.102.1'
   s.add_dependency 'avm-eac_generic_base0', '~> 0.15', '>= 0.15.3'
   s.add_dependency 'eac_envs-http', '~> 0.7', '>= 0.7.1'
-  s.add_dependency 'eac_ruby_utils', '~> 0.131'
+  s.add_dependency 'eac_ruby_utils', '~> 0.131', '>= 0.131.1'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.13'
 end
