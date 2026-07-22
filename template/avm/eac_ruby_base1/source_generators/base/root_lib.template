@@ -1,8 +1,4 @@
 # frozen_string_literal: true
 
-require 'eac_ruby_utils'
-EacRubyUtils::RootModuleSetup.perform __FILE__
-
-%%ROOT_MODULE_OPEN%%
-%%ROOT_MODULE_CLOSE%%
-%%ROOT_MODULE_AFTER_CLOSE%%
+require 'eac_ruby_base1'
+EacRubyBase1::RootModuleSetup.perform __FILE__%%ROOT_MODULE_SETUP_BLOCK%%

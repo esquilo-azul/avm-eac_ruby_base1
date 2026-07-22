@@ -7,7 +7,7 @@ module Avm
         module Dependencies
           common_concern
 
-          COMMON_DEPENDENCY_GEMS = %w[eac_ruby_utils].freeze
+          COMMON_DEPENDENCY_GEMS = %w[eac_ruby_base1].freeze
           DEVELOPMENT_DEPENDENCY_GEMS = %w[eac_ruby_gem_support].freeze
 
           module ClassMethods
