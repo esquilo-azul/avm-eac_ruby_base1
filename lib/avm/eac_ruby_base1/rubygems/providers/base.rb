@@ -6,6 +6,8 @@ module Avm
       module Providers
         class Base
           acts_as_abstract
+          enable_listable
+          lists.add_symbol :push_result_type, :success, :access_denied
 
           common_constructor :root_http_url do
             self.root_http_url = root_http_url.to_uri
