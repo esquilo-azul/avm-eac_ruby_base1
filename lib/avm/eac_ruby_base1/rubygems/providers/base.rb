@@ -37,6 +37,13 @@ module Avm
             raise_abstract __method__, gem_package_path
           end
 
+          # @return [Hash]
+          def push_gem_command_exit_codes
+            {
+              0 => PUSH_RESULT_TYPE_SUCCESS
+            }
+          end
+
           # @return [String]
           def to_s
             "#{self.class.name.demodulize}[#{root_http_url}]"
