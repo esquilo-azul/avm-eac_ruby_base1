@@ -57,9 +57,10 @@ module Avm
               )
             end
 
+            # @return [String]
             def version_unpublished_check_result
               ::Avm::Launcher::Publish::CheckResult.pending(
-                publish.i18n_translate(__method__, gem: gem_spec.name, provider: gem_provider)
+                publish.i18n_translate(__method__, gem: gem_spec.full_name, provider: gem_provider)
               )
             end
           end
