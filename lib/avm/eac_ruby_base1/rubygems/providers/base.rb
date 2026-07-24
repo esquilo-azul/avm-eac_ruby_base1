@@ -21,13 +21,15 @@ module Avm
           end
 
           # @param gem_package_path [Pathname]
-          # @return [Boolean]
+          # @return [Avm::EacRubyBase1::Rubygems::Providers::Base::CommandResultToPushResult::RESULT_STRUCT]
           def push_gem(gem_package_path)
             command_args = push_gem_command_args(gem_package_path)
             command_args = %w[echo] + command_args + %w[(Dry-run)] unless
             ::Avm::Launcher::Context.current.publish_options[:confirm]
             ::EacRubyUtils::Ruby.on_clean_environment do
-              EacRubyUtils::Envs.local.command(*command_args).system
+              command_result_to_push_result(
+                EacRubyUtils::Envs.local.command(*command_args).execute
+              )
             end
           end
 
@@ -48,6 +50,8 @@ module Avm
           def to_s
             "#{self.class.name.demodulize}[#{root_http_url}]"
           end
+
+          require_sub __FILE__, require_mode: :kernel
         end
       end
     end
