@@ -7,7 +7,7 @@ module Avm
         module Update
           # @return [void]
           def on_sub_updated
-            update_self_changes_before_subs
+            ::Avm::EacRubyBase1::Sources::Update::Changes::BundleUpdate.new(self).perform
           end
 
           # @param changes [Enumerable<Avm::Sources::Change>]
