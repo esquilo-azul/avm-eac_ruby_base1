@@ -30,6 +30,11 @@ module Avm
             end
             command
           end
+
+          # @return [Hash]
+          def push_gem_command_exit_codes
+            super.merge(256 => PUSH_RESULT_TYPE_ACCESS_DENIED)
+          end
         end
       end
     end
