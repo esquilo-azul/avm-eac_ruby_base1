@@ -30,7 +30,7 @@ module Avm
 
         # @return [EacTemplates::Modules::Base]
         def root_template
-          template.child('static')
+          eac_template.child('static')
         end
 
         def self_gem_uncached
@@ -40,7 +40,7 @@ module Avm
         def template_apply(from, to)
           target = target_path.join(to)
           target.dirname.mkpath
-          template.child(from).apply_to_file(self, target.to_path)
+          eac_template.child(from).apply_to_file(self, target.to_path)
         end
       end
     end
