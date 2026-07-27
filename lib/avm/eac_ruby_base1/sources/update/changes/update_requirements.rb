@@ -10,6 +10,8 @@ module Avm
 
             # @return [void]
             def perform
+              return if source.gemspec_path.blank?
+
               source.bundle.system!
               update_gemspec
               source.bundle.system!
