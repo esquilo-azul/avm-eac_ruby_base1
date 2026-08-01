@@ -2,6 +2,6 @@
 
 module Avm
   module EacRubyBase1
-    VERSION = '0.43.2'
+    VERSION = '0.43.3'
   end
 end
