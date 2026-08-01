@@ -20,7 +20,7 @@ module Avm
 
         # @return [Pathname]
         def target_path
-          source.path.join('Gemfile.local')
+          source.path.join("#{source.default_gemfile_path}.local")
         end
 
         def on_unexisting_gemfile_local
